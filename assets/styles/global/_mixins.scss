@@ -1,0 +1,34 @@
+@mixin phone-lower {
+  @media (max-width: 480px) {
+    @content;
+  }
+}
+@mixin tablet-lower {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+@mixin laptop-lower {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+@mixin big-desktop-up {
+  @media (min-width: 1600px) {
+    @content;
+  }
+}
+
+@mixin bg-pseudo-element {
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-block);
+    opacity: var(--pseudo-element-opacity);
+  }
+}

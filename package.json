@@ -1,0 +1,25 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@element-plus/nuxt": "^1.0.7",
+    "nuxt": "^3.9.0",
+    "sass": "^1.69.6",
+    "unplugin-element-plus": "^0.8.0",
+    "vue": "^3.4.3",
+    "vue-router": "^4.2.5"
+  },
+  "dependencies": {
+    "element-plus": "^2.4.4",
+    "vue-hls-video-player": "^1.0.1",
+    "vue3-lottie": "^3.2.0"
+  }
+}

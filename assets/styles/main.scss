@@ -1,0 +1,194 @@
+@import "@/assets/styles/_variables.scss";
+@import "@/assets/styles/_reset.scss";
+@import "@/assets/styles/_modifier.scss";
+@import "@/assets/styles/global/_mixins.scss";
+@import "element-plus/theme-chalk/dark/css-vars";
+
+p,
+h1,
+h2,
+h3,
+li,
+a {
+  color: var(--text-color);
+}
+
+h1 {
+  font-size: 40px;
+
+  @include tablet-lower {
+    font-size: 32px;
+  }
+}
+
+h2,
+h2 span {
+  font-size: 32px;
+
+  @include tablet-lower {
+    font-size: 24px;
+  }
+}
+
+h3 {
+  font-size: 24px;
+
+  @include tablet-lower {
+    font-size: 16px;
+  }
+}
+
+p {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  scroll-behavior: smooth;
+  background-color: var(--bg-app);
+}
+
+.router-view {
+  height: calc(100vh - var(--header-height));
+  overflow: auto;
+  padding: 32px 56px;
+  width: 100%;
+
+  @include tablet-lower {
+    padding: 12px 36px;
+  }
+}
+
+#app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.highlight {
+  color: var(--brand-highlight);
+}
+
+.title-1 {
+  line-height: 40px;
+}
+
+.title-2 {
+  line-height: 60px;
+  font-size: 16px;
+}
+
+.filters {
+  display: flex;
+  gap: 16px;
+}
+
+.m-b-8 {
+  margin-bottom: 8px;
+}
+.m-b-16 {
+  margin-bottom: 16px;
+}
+.m-b-24 {
+  margin-bottom: 24px;
+}
+
+.m-t-8 {
+  margin-top: 8px;
+}
+.m-t-16 {
+  margin-top: 16px;
+}
+.m-t-24 {
+  margin-top: 24px;
+}
+
+.m-l-8 {
+  margin-left: 8px;
+}
+.m-l-16 {
+  margin-left: 16px;
+}
+.m-l-24 {
+  margin-left: 24px;
+}
+
+.m-r-8 {
+  margin-right: 8px;
+}
+.m-r-16 {
+  margin-right: 16px;
+}
+.m-r-24 {
+  margin-right: 24px;
+}
+
+.m-auto {
+  margin: auto;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.align-c {
+  align-items: center;
+}
+
+.gap-16 {
+  gap: 16px;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.p-b-8 {
+  margin-bottom: 8px;
+}
+.p-b-16 {
+  margin-bottom: 16px;
+}
+.p-b-24 {
+  margin-bottom: 24px;
+}
+
+.p-t-8 {
+  margin-top: 8px;
+}
+.p-t-16 {
+  margin-top: 16px;
+}
+.p-t-24 {
+  margin-top: 24px;
+}
+
+.p-l-8 {
+  margin-left: 8px;
+}
+.p-l-16 {
+  margin-left: 16px;
+}
+.p-l-24 {
+  margin-left: 24px;
+}
+
+.p-r-8 {
+  margin-right: 8px;
+}
+.p-r-16 {
+  margin-right: 16px;
+}
+.p-r-24 {
+  margin-right: 24px;
+}

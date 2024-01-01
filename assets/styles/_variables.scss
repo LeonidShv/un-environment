@@ -1,0 +1,42 @@
+html {
+  --dark: #161b22;
+  --deep-dark: #0d1116;
+  --light: #f0f6fc;
+
+  --white: #fff;
+  --grey-light: #f9f9f9;
+}
+
+html.dark {
+  --span-text: #b1b6bb;
+  --border: var(--light);
+  --bg-app: var(--deep-dark);
+  --bg-block: var(--dark);
+  --text-color: var(--light);
+
+  --brand-highlight: var(--el-color-primary);
+  --pseudo-element-opacity: 0.5;
+  --shadow-carousel: rgb(195 195 199 / 25%) 0px 50px 100px -20px,
+    rgb(92 86 86 / 30%) 0px 30px 60px -30px;
+}
+
+html.light {
+  --span-text: #4d5259;
+  --border: var(--dark);
+  --bg-app: var(--white);
+  --bg-block: var(--grey-light);
+  --text-color: var(--dark);
+  --brand-highlight: var(--el-color-primary);
+
+  --shadow-header: rgba(0, 0, 0, 0.45) 0px 9px 23px -20px;
+  --shadow-footer: 0px -0.5px 0px 0px rgba(78, 77, 77, 0.4);
+  --pseudo-element-opacity: 0.9;
+  --shadow-carousel: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+html {
+  --header-height: 60px;
+  --footer-height: 60px;
+  --section-padding-block: 48px;
+}

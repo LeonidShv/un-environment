@@ -1,0 +1,46 @@
+<template>
+  <section class="error">
+    <div class="m-auto">
+      <Vue3Lottie :animationData="notFoundPage" :height="200" :width="200" />
+
+      <p class="Error-text">Not found page, please go back to the home page.</p>
+
+      <a @click="handleError" class="error-link"> 
+        <VButton> Go home </VButton>   
+      </a>
+    </div>
+  </section>
+</template>
+
+<script setup>
+import { Vue3Lottie } from "vue3-lottie";
+
+import notFoundPage from "@/assets/animations/notFoundPage.json";
+
+const error = useError();
+
+const handleError = () => {
+  clearError({
+    redirect: '/',
+  });
+};
+</script>
+
+<style lang="scss" scoped>
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  height: 90vh;
+
+  &-text {
+    font-size: 24px;
+  }
+
+  &-link {
+    display: block;
+    margin-top: 32px;
+  }
+}
+</style>
