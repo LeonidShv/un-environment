@@ -18,7 +18,10 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+    "axios": "^1.6.3",
+    "chart.js": "^4.4.1",
     "element-plus": "^2.4.4",
+    "vue-chartjs": "^5.3.0",
     "vue-hls-video-player": "^1.0.1",
     "vue3-lottie": "^3.2.0"
   }
