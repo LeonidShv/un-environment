@@ -1,74 +1,73 @@
 <template>
   <h2>page</h2>
-  <div>
+  <section>
+    <h2>Different countries | one element</h2>
     <VSelect
-      v-model="element"
+      v-model="elementForDifferentCountries"
       :options="elements"
       placeholder="Elements"
       filterable
-      @change="changeElement"
+      multiple
+      @change="changeCriteriaForOneElement"
     />
 
-    <p>{{ element }}</p>
+    <p>{{ elementForDifferentCountries }}</p>
 
     <VSelect
-      v-model="country"
+      v-model="countriesForOneElement"
       :options="countries"
       filterable
       placeholder="Countries"
-      @change="changeCountry"
+      multiple
+      @change="changeCriteriaForOneElement"
     />
 
-    <p>{{ country }}</p>
+    <p>{{ countriesForOneElement }}</p>
 
-    <Bar :data="data" :options="options" />
-    <Line :data="data" :options="options" />
-    <Pie :data="data" :options="options" />
-  </div>
+    <VChart :data="data" type="Bar" />
+    <VChart :data="data" type="Line" />
+    <VChart :data="data" type="Pie"  />
+  </section>
 </template>
 
 <script setup>
 import { onMounted } from 'vue'
 import api from '@/api'
 
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  LineElement,
-  ArcElement,
-  PointElement,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js'
-import { Pie, Line, Bar } from 'vue-chartjs'
+const years = [
+  '1990',
+  '1991',
+  '1992',
+  '1993',
+  '1994',
+  '1995',
+  '1996',
+  '1997',
+  '1998',
+  '1999',
+  '2000',
+  '2001',
+  '2002',
+  '2003',
+  '2004',
+  '2005',
+  '2006',
+  '2007',
+  '2008',
+  '2009',
+  '2010',
+  '2011',
+  '2012',
+  '2013',
+  '2014',
+  '2015',
+  '2016',
+  '2017',
+  '2018',
+  '2019',
+  '2020'
+]
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  ArcElement,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-)
-
-
-const data = ref({
-  labels: ['January', 'February', 'March'],
-  datasets: [{ data: [40, 20, 12] }]
-})
-const options = ref({
-  responsive: true
-})
-
-// https://data.un.org/ws/rest/data/UNSD,DF_UNData_UNFCC,1.0/.EN_ATM_CO2E_XLULUCF.AUS./ALL/?detail=full&startPeriod=1990-01-01&endPeriod=2020-12-31&dimensionAtObservation=TIME_PERIOD
-// https://data.un.org/ws/rest/data/UNSD,DF_UNData_UNFCC,1.0/.EN_ATM_CO2E_XLULUCF.BEL./ALL/?detail=full&dimensionAtObservation=TIME_PERIOD
-const element = ref('EN_ATM_METH_XLULUCF')
 const elements = ref([
   {
     value: 'EN_ATM_METH_XLULUCF',
@@ -78,7 +77,6 @@ const elements = ref([
     value: 'EN_ATM_CO2E_XLULUCF',
     label: 'Carbon dioxide (CO2)'
   },
-
   {
     value: 'EN_CLC_GHGE_XLULUCF',
     label: 'Greenhouse Gas (GHGs)'
@@ -87,7 +85,6 @@ const elements = ref([
     value: 'EN_ATM_HFCE',
     label: 'Hydrofluorocarbons (HFCs)'
   },
-
   {
     value: 'EN_ATM_NO2E_XLULUCF',
     label: 'Nitrous oxide (N2O)'
@@ -102,7 +99,6 @@ const elements = ref([
   }
 ])
 
-const country = ref('AUS')
 const countries = ref([
   {
     value: 'AUS',
@@ -278,28 +274,49 @@ const countries = ref([
   }
 ])
 
-// async function getEnvironment() {
-//   const response = await api.cases.readEnvironment()
-
-//   this.casesList = response.data
-// }
-
-// await getEnvironment()
-
-onMounted(async () => {
-  // const response = await api.environment.readEnvironment(
-  //   element.value,
-  //   country.value
-  // )
-
-  // console.log(response)
+const data = ref({
+  labels: [],
+  datasets: [{ data: [] }]
 })
 
-async function changeElement(element) {
-  await api.environment.readEnvironment(element)
+const elementForDifferentCountries = ref(['EN_ATM_CO2E_XLULUCF'])
+const countriesForOneElement = ref(['AUS'])
+
+const changeCriteriaForOneElement = async () => {
+  const countriesParsed = countriesForOneElement.value.join('+')
+  console.log('changeCriteriaForOneElement: ',countriesParsed);
+  const response = await api.environment.readEnvironment(
+    elementForDifferentCountries.value.join('+'),
+    countriesParsed
+  )
+
+  updateChartData(response.data.dataSets[0].series, response.data.structure.dimensions.series)
 }
 
-async function changeCountry(country) {
-  await api.environment.readEnvironment(country)
+function updateChartData(dataSetsSeries, structureSeries) {
+  const areaStructure = structureSeries.find(({role}) => role === 'REF_AREA').values
+  console.log(areaStructure);
+  const datasets = []
+  let index = 0;
+
+  for (let key in dataSetsSeries) {
+    const rest = Object.entries(
+      dataSetsSeries[key].observations
+    )
+      .sort((a, b) => a[0] - b[0])
+      .map((item) => item[1][0])
+
+    datasets.push({ data: rest, label: areaStructure[index].name })
+    index++;
+  }
+
+  data.value = {
+    labels: years,
+    datasets
+  }
 }
+
+onMounted(async () => {
+  await changeCriteriaForOneElement()
+})
 </script>
