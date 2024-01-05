@@ -26,13 +26,18 @@
 
     <VChart :data="data" type="Bar" />
     <VChart :data="data" type="Line" />
-    <VChart :data="data" type="Pie"  />
+    <VChart :data="data" type="Pie" />
   </section>
 </template>
 
 <script setup>
 import { onMounted } from 'vue'
-import api from '@/api'
+import { storeToRefs } from 'pinia'
+import { useEnvironmentStore } from '@/stores/environment'
+
+const store = useEnvironmentStore()
+const { dataSetsSeries, structureSeries } = storeToRefs(store)
+const { getEnvironment } = store
 
 const years = [
   '1990',
@@ -283,31 +288,46 @@ const elementForDifferentCountries = ref(['EN_ATM_CO2E_XLULUCF'])
 const countriesForOneElement = ref(['AUS'])
 
 const changeCriteriaForOneElement = async () => {
-  const countriesParsed = countriesForOneElement.value.join('+')
-  console.log('changeCriteriaForOneElement: ',countriesParsed);
-  const response = await api.environment.readEnvironment(
+  await getEnvironment(
     elementForDifferentCountries.value.join('+'),
-    countriesParsed
+    countriesForOneElement.value.join('+')
   )
 
-  updateChartData(response.data.dataSets[0].series, response.data.structure.dimensions.series)
+  updateChartData(dataSetsSeries.value, structureSeries.value)
 }
 
+const colors = [
+  '#EA906C',
+  '#B31312',
+  '#2B2A4C',
+  '#A7D397',
+  '#E26EE5',
+  '#7E30E1',
+  '#525CEB',
+  '#596FB7',
+  '#597E52'
+]
+
 function updateChartData(dataSetsSeries, structureSeries) {
-  const areaStructure = structureSeries.find(({role}) => role === 'REF_AREA').values
-  console.log(areaStructure);
+  const areaStructure = structureSeries.find(
+    ({ role }) => role === 'REF_AREA'
+  ).values
+
   const datasets = []
-  let index = 0;
+  let index = 0
 
   for (let key in dataSetsSeries) {
-    const rest = Object.entries(
-      dataSetsSeries[key].observations
-    )
+    const rest = Object.entries(dataSetsSeries[key].observations)
       .sort((a, b) => a[0] - b[0])
       .map((item) => item[1][0])
 
-    datasets.push({ data: rest, label: areaStructure[index].name })
-    index++;
+    datasets.push({
+      data: rest,
+      label: areaStructure[index].name,
+      backgroundColor: colors[index] || '#607274',
+      borderColor: colors[index] || '#607274'
+    })
+    index++
   }
 
   data.value = {
