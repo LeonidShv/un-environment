@@ -2,51 +2,53 @@
   <h2>page</h2>
   <section>
     <h2>Different countries | one element</h2>
-    <VSelect
-      v-model="elementForDefaultChart"
-      :options="elements"
-      placeholder="Elements"
-      filterable
-      multiple
-      @change="modifyDefaultChartCriteria"
-    />
+    <VForm>
+      <VFormItem>
+        <VSelect
+          v-model="elementForDefaultChart"
+          :options="elements"
+          placeholder="Elements"
+          filterable
+          @change="modifyDefaultChartCriteria"
+        />
+      </VFormItem>
 
-    <VSelect
-      v-model="countriesForDefaultChart"
-      :options="countries"
-      filterable
-      placeholder="Countries"
-      multiple
-      @change="modifyDefaultChartCriteria"
-    />
+      <VFormItem>
+        <VSelect
+          v-model="countriesForDefaultChart"
+          :options="countries"
+          filterable
+          placeholder="Countries"
+          multiple
+          @change="modifyDefaultChartCriteria"
+        />
+      </VFormItem>
+    </VForm>
 
     <VChart :data="chartDefault" type="Bar" />
     <VChart :data="chartDefault" type="Line" />
 
-    <VForm
-      ref="ruleFormRef"
-      :model="ruleForm"
-      :rules="rules"
-      class="demo-ruleForm"
-    >
-      <VSelect
-        v-model="elementForPieChart"
-        :options="elements"
-        placeholder="Elements"
-        filterable
-        multiple
-        @change="modifyPieChartCriteria"
-      />
+    <VForm ref="ruleFormRef" :model="ruleForm" :rules="rules">
+      <VFormItem>
+        <VSelect
+          v-model="elementForPieChart"
+          :options="elements"
+          placeholder="Elements"
+          filterable
+          @change="modifyPieChartCriteria"
+        />
+      </VFormItem>
 
-      <VSelect
-        v-model="countriesForPieChart"
-        :options="countries"
-        filterable
-        placeholder="Countries"
-        multiple
-        @change="modifyPieChartCriteria"
-      />
-
+      <VFormItem>
+        <VSelect
+          v-model="countriesForPieChart"
+          :options="countries"
+          filterable
+          placeholder="Countries"
+          multiple
+          @change="modifyPieChartCriteria"
+        />
+      </VFormItem>
       <VFormItem prop="yearForPieChart">
         <VDatePicker
           v-model="ruleForm.yearForPieChart"
@@ -56,7 +58,7 @@
         />
       </VFormItem>
     </VForm>
-
+<p>{{ elementForPieChart }}</p>
     <VChart :data="chartPie" type="Pie" />
   </section>
 </template>
@@ -78,7 +80,7 @@ const {
 } = storeToRefs(store)
 const { readEnvironmentDefaultChart, readEnvironmentPieChart } = store
 
-const elementForDefaultChart = ref(['EN_ATM_CO2E_XLULUCF'])
+const elementForDefaultChart = ref('EN_ATM_CO2E_XLULUCF')
 const countriesForDefaultChart = ref(['AUS'])
 const chartDefault = ref({
   labels: [],
@@ -94,7 +96,7 @@ const modifyDefaultChartCriteria = async () => {
   }
 
   await readEnvironmentDefaultChart(
-    elementForDefaultChart.value.join('+'),
+    elementForDefaultChart.value,
     countriesForDefaultChart.value.join('+'),
     params
   )
@@ -109,7 +111,7 @@ const modifyDefaultChartCriteria = async () => {
   }
 }
 
-const elementForPieChart = ref(['EN_ATM_CO2E_XLULUCF'])
+const elementForPieChart = ref('EN_ATM_CO2E_XLULUCF')
 const countriesForPieChart = ref(['AUS'])
 const chartPie = ref({
   labels: [],
@@ -118,16 +120,15 @@ const chartPie = ref({
 
 const ruleFormRef = ref<FormInstance>()
 const ruleForm = reactive({
-  yearForPieChart: '2000-01-01',
+  yearForPieChart: '2000-01-01'
 })
 const rules = reactive<FormRules<typeof ruleForm>>({
-  yearForPieChart: [{ validator: checkYear, trigger: 'blur' }],
+  yearForPieChart: [{ validator: checkYear, trigger: 'blur' }]
 })
 
 function checkYear(rule: any, value: any, callback: any) {
-  
-  console.log('checkYear',new Date(value).getFullYear());
-  
+  console.log('checkYear', new Date(value).getFullYear())
+
   if (!value) {
     return callback(new Error('Please input the year [1990:2020]'))
   }
@@ -142,7 +143,6 @@ function checkYear(rule: any, value: any, callback: any) {
   }
 }
 
-
 const modifyPieChartCriteria = async () => {
   const params = {
     detail: 'full',
@@ -152,7 +152,7 @@ const modifyPieChartCriteria = async () => {
   }
 
   await readEnvironmentPieChart(
-    elementForPieChart.value.join('+'),
+    elementForPieChart.value,
     countriesForPieChart.value.join('+'),
     params
   )
