@@ -37,9 +37,6 @@ const options = ref({
   responsive: true
 })
 
-// const Pie = resolveComponent('Pie')
-// const Line = resolveComponent('Line')
-// const Bar = resolveComponent('Bar')
 
 defineProps({
   type: {

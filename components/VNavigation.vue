@@ -1,6 +1,6 @@
 <template>
   <el-menu
-    class="el-menu-vertical-demo"
+    class="navigation gap-2"
     :collapse="false"
     @open="handleOpen"
     @close="handleClose"
@@ -29,38 +29,9 @@ defineProps({
 </script>
 
 <style lang="scss" scoped>
-.Navigation {
-  align-items: center;
-  flex-grow: 1;
-
-  &-item {
-    &--indent {
-      margin-left: auto;
-    }
-  }
-
-  &-modeSwitch {
-    height: 100%;
-  }
-
-  &.el-menu--horizontal.el-menu {
-    border: 0;
-  }
-
-  &.el-menu {
-    --el-menu-bg-color: var(--bg-block);
-  }
-
-  :deep(.el-sub-menu) {
-    margin-left: auto;
-  }
-}
-
-.Navigation .el-menu--horizontal.el-menu--popup-container,
-.el-menu.el-menu--popup.el-menu--popup-bottom-start {
-  .Navigation-modeSwitch {
-    height: unset;
-    margin-left: 9px;
+.navigation {
+  :deep(.el-menu-item) {
+    padding: 0;
   }
 }
 </style>

@@ -1,9 +1,10 @@
 <template>
-  <div>
+  <header class="p-h-3">
     <VNavigation class="navigation" :navigation="navigation" />
-
+  </header>
+  <main class="p-h-3">
     <NuxtPage />
-  </div>
+  </main>
 </template>
 
 <script setup>

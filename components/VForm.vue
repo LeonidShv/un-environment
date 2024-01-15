@@ -3,6 +3,7 @@
     :ref="ref" 
     :model="model" 
     :rules="rules" 
+    class="form"
   >
     <slot />
   </el-form>
@@ -21,3 +22,9 @@ withDefaults(defineProps<Props>(), {
   rules: {}
 })
 </script>
+
+<style lang="scss" scoped>
+.form :deep(.el-form-item) {
+  margin-bottom: 0;
+}
+</style>

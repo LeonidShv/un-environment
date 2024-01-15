@@ -1,8 +1,7 @@
 <template>
-  <h2>page</h2>
-  <section>
-    <h2>Different countries | one element</h2>
-    <VForm>
+  <section class="m-t-2">
+    <h2 class="m-b-1">Different countries | one element</h2>
+    <VForm class="d-flex gap-1 m-b-1">
       <VFormItem>
         <VSelect
           v-model="elementForDefaultChart"
@@ -24,11 +23,18 @@
         />
       </VFormItem>
     </VForm>
+    <div class="chart-default-wrapper">
+      <!-- <VChart :data="chartDefault" type="Bar" /> -->
+      <VChart :data="chartDefault" type="Line" />
+    </div>
 
-    <VChart :data="chartDefault" type="Bar" />
-    <VChart :data="chartDefault" type="Line" />
-
-    <VForm ref="ruleFormRef" :model="ruleForm" :rules="rules">
+    <h2 class="m-b-1 m-t-2">Different countries | one element | one year</h2>
+    <VForm
+      class="d-flex gap-1 m-b-1"
+      ref="ruleFormRef"
+      :model="ruleForm"
+      :rules="rules"
+    >
       <VFormItem>
         <VSelect
           v-model="elementForPieChart"
@@ -55,11 +61,13 @@
           placeholder="Pick a year"
           type="year"
           size="default"
+          @change="modifyPieChartCriteria"
         />
       </VFormItem>
     </VForm>
-<p>{{ elementForPieChart }}</p>
-    <VChart :data="chartPie" type="Pie" />
+    <div class="chart-pie-wrapper">
+      <VChart :data="chartPie" type="Pie" />
+    </div>
   </section>
 </template>
 
@@ -127,8 +135,6 @@ const rules = reactive<FormRules<typeof ruleForm>>({
 })
 
 function checkYear(rule: any, value: any, callback: any) {
-  console.log('checkYear', new Date(value).getFullYear())
-
   if (!value) {
     return callback(new Error('Please input the year [1990:2020]'))
   }
@@ -144,10 +150,12 @@ function checkYear(rule: any, value: any, callback: any) {
 }
 
 const modifyPieChartCriteria = async () => {
+  const year = new Date(ruleForm.yearForPieChart).getFullYear()
+
   const params = {
     detail: 'full',
-    startPeriod: '2020-01-01',
-    endPeriod: '2020-12-31',
+    startPeriod: `${year}-01-01`,
+    endPeriod: `${year}-12-31`,
     dimensionAtObservation: 'TIME_PERIOD'
   }
 
@@ -157,25 +165,16 @@ const modifyPieChartCriteria = async () => {
     params
   )
 
-  // chartPie.value = {
-  //   labels: ['one', 'two'],
-  //   datasets: [{
-  //     data: [10, 30]
-  //   }]
-  // }
+  const datasets = getPieChartData(dataSetsSeriesForPieChart.value)
 
-  const datasets = getPieChartData(
-    dataSetsSeriesForPieChart.value,
-    structureSeriesForPieChart.value
-  )
-  console.log(dataSetsSeriesForPieChart.value)
-  console.log(structureSeriesForPieChart.value)
+  const areaStructure = structureSeriesForPieChart.value
+    .find(({ role }) => role === 'REF_AREA')
+    .values.map(({ name }) => name)
+
   chartPie.value = {
     datasets,
-    labels: [2020]
+    labels: areaStructure
   }
-
-  console.log(chartPie.value)
 }
 
 function getChartData(dataSetsSeries, structureSeries) {
@@ -202,11 +201,7 @@ function getChartData(dataSetsSeries, structureSeries) {
   return datasets
 }
 
-function getPieChartData(dataSetsSeries, structureSeries) {
-  const areaStructure = structureSeries.find(
-    ({ role }) => role === 'REF_AREA'
-  ).values
-
+function getPieChartData(dataSetsSeries) {
   const data = []
   const backgroundColor = []
   const borderColor = []
@@ -230,3 +225,21 @@ onMounted(async () => {
   await modifyPieChartCriteria()
 })
 </script>
+
+<style lang="scss" scoped>
+.chart-default-wrapper {
+  height: 500px;
+
+  @include laptop-lower {
+    height: 300px;
+  }
+}
+
+.chart-pie-wrapper {
+  height: 400px;
+
+  @include laptop-lower {
+    height: 300px;
+  }
+}
+</style>

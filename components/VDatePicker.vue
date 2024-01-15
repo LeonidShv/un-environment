@@ -1,7 +1,6 @@
 <template>
   <el-date-picker
-    @change="(value) => $emit('update:v-model', value)"
-    v-model="value1"
+    @change="onChange"
     :type="type"
     :placeholder="placeholder"
     size="default"
@@ -9,6 +8,8 @@
 </template>
 
 <script setup>
+const emit = defineEmits(["update:v-model", "change"]);
+
 defineProps({
   loading: {
     type: Boolean,
@@ -33,4 +34,9 @@ defineProps({
     }
   }
 })
+
+function onChange(date) {
+  emit('update:v-model', date)
+  emit('change', date)
+}
 </script>
