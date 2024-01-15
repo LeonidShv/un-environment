@@ -20,8 +20,6 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-
 defineProps({
   navigation: {
     type: Array,
