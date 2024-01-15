@@ -23,10 +23,9 @@
     <VChart :data="chartDefault" type="Bar" />
     <VChart :data="chartDefault" type="Line" />
 
-    <el-form
+    <VForm
       ref="ruleFormRef"
       :model="ruleForm"
-      status-icon
       :rules="rules"
       class="demo-ruleForm"
     >
@@ -48,15 +47,15 @@
         @change="modifyPieChartCriteria"
       />
 
-      <el-form-item prop="yearForPieChart">
+      <VFormItem prop="yearForPieChart">
         <VDatePicker
           v-model="ruleForm.yearForPieChart"
           placeholder="Pick a year"
           type="year"
           size="default"
         />
-      </el-form-item>
-    </el-form>
+      </VFormItem>
+    </VForm>
 
     <VChart :data="chartPie" type="Pie" />
   </section>
