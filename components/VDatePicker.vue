@@ -5,7 +5,6 @@
     :type="type"
     :placeholder="placeholder"
     size="default"
-    value-format="YYYY-MM-DD"
   />
 </template>
 

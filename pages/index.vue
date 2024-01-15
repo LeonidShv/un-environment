@@ -23,7 +23,13 @@
     <VChart :data="chartDefault" type="Bar" />
     <VChart :data="chartDefault" type="Line" />
 
-    <el-form>
+    <el-form
+      ref="ruleFormRef"
+      :model="ruleForm"
+      status-icon
+      :rules="rules"
+      class="demo-ruleForm"
+    >
       <VSelect
         v-model="elementForPieChart"
         :options="elements"
@@ -42,13 +48,14 @@
         @change="modifyPieChartCriteria"
       />
 
-      <VDatePicker
-        v-model="yearForPieChart"
-        placeholder="Pick a year"
-        type="year"
-        size="default"
-      />
-      {{ yearForPieChart }}
+      <el-form-item prop="yearForPieChart">
+        <VDatePicker
+          v-model="ruleForm.yearForPieChart"
+          placeholder="Pick a year"
+          type="year"
+          size="default"
+        />
+      </el-form-item>
     </el-form>
 
     <VChart :data="chartPie" type="Pie" />
@@ -103,13 +110,39 @@ const modifyDefaultChartCriteria = async () => {
   }
 }
 
-const yearForPieChart = ref('2000-01-01')
 const elementForPieChart = ref(['EN_ATM_CO2E_XLULUCF'])
 const countriesForPieChart = ref(['AUS'])
 const chartPie = ref({
   labels: [],
   datasets: [{ data: [] }]
 })
+
+const ruleFormRef = ref<FormInstance>()
+const ruleForm = reactive({
+  yearForPieChart: '2000-01-01',
+})
+const rules = reactive<FormRules<typeof ruleForm>>({
+  yearForPieChart: [{ validator: checkYear, trigger: 'blur' }],
+})
+
+function checkYear(rule: any, value: any, callback: any) {
+  
+  console.log('checkYear',new Date(value).getFullYear());
+  
+  if (!value) {
+    return callback(new Error('Please input the year [1990:2020]'))
+  }
+
+  const year = new Date(value).getFullYear()
+  if (year < 1990) {
+    callback(new Error('Age must be greater than 1989'))
+  } else if (year > 2020) {
+    callback(new Error('Age must be less than 2021'))
+  } else {
+    callback()
+  }
+}
+
 
 const modifyPieChartCriteria = async () => {
   const params = {
