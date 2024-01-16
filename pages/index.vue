@@ -66,7 +66,7 @@
       </VFormItem>
     </VForm>
     <div class="chart-pie-wrapper">
-      <VChart :data="chartPie" type="Pie" />
+      <VChart :data="chartPie" :type="ChartType.Pie" />
     </div>
   </section>
 </template>
@@ -78,6 +78,8 @@ import { useEnvironmentStore } from '@/stores/environment'
 import { countries, elements, years, colors } from '@/constants'
 
 import type { FormInstance, FormRules } from 'element-plus'
+import type { IChartPie, IChartDefault } from '@/interfaces/chart'
+import { ChartType } from '@/interfaces/enums';
 
 const store = useEnvironmentStore()
 const {
@@ -90,9 +92,9 @@ const { readEnvironmentDefaultChart, readEnvironmentPieChart } = store
 
 const elementForDefaultChart = ref('EN_ATM_CO2E_XLULUCF')
 const countriesForDefaultChart = ref(['AUS'])
-const chartDefault = ref({
+const chartDefault = ref<IChartDefault>({
   labels: [],
-  datasets: [{ data: [] }]
+  datasets: []
 })
 
 const modifyDefaultChartCriteria = async () => {
@@ -117,13 +119,15 @@ const modifyDefaultChartCriteria = async () => {
     datasets,
     labels: years
   }
+
+  console.log(chartDefault.value);
 }
 
 const elementForPieChart = ref('EN_ATM_CO2E_XLULUCF')
 const countriesForPieChart = ref(['AUS'])
-const chartPie = ref({
+const chartPie = ref<IChartPie>({
   labels: [],
-  datasets: [{ data: [] }]
+  datasets: []
 })
 
 const ruleFormRef = ref<FormInstance>()

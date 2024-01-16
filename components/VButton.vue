@@ -12,24 +12,18 @@
   </router-link>
 </template>
 
-<script setup>
-defineProps({
-  loading: {
-    type: Boolean,
-    default: false,
-  },
-  type: {
-    type: String,
-    default: "default",
-    validator(value) {
-      return ["default", "back"].includes(value);
-    },
-  },
-  to: {
-    type: String,
-    default: "",
-  },
-});
+<script setup lang="ts">
+export interface Props {
+  loading?: boolean
+  type: "default" | "back"
+  to: string
+}
+
+withDefaults(defineProps<Props>(), {
+  label: '',
+  type: 'default',
+  to: ''
+})
 </script>
 
 <style lang="scss" scoped>

@@ -4,7 +4,7 @@
    <Bar v-if="type === 'Bar'" :data="data" />
 </template>
 
-<script setup>
+<script setup lang="ts">
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -20,6 +20,9 @@ import {
 } from 'chart.js'
 import { Line, Bar, Pie } from 'vue-chartjs'
 
+import type { IChartPie, IChartDefault } from '@/interfaces/chart'
+import { ChartType } from '@/interfaces/enums';
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -33,22 +36,17 @@ ChartJS.register(
   Colors
 )
 
-const options = ref({
-  responsive: true
+interface Props {
+  type: ChartType
+  data: IChartPie | IChartDefault | any
+}
+
+withDefaults(defineProps<Props>(), {
+  type: ChartType.Line,
+  data: {}
 })
 
-
-defineProps({
-  type: {
-    type: String,
-    default: 'Line',
-    validator(value) {
-      return ['Pie', 'Line', 'Bar'].includes(value)
-    }
-  },
-  data: {
-    type: Object,
-    default: () => {}
-  }
+const options = ref({
+  responsive: true
 })
 </script>
