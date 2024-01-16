@@ -1,175 +1,433 @@
 export const countries = [
   {
     value: 'AUS',
-    label: 'Australia'
+    label: 'Australia',
+    population: {
+      "2020": 25499884 
+    },
+    area: {
+      "2020": 7686850
+    }
   },
   {
     value: 'AUT',
-    label: 'Austria'
+    label: 'Austria',
+    population: {
+      "2020": 9006398 
+    },
+    area: {
+      "2020": 83858
+    }
   },
   {
     value: 'BLR',
-    label: 'Belarus'
+    label: 'Belarus',
+    population: {
+      "2020": 9449323 
+    },
+    area: {
+      "2020": 207600
+    }
   },
   {
     value: 'BEL',
-    label: 'Belgium'
+    label: 'Belgium',
+    population: {
+      "2020": 11589623 
+    },
+    area: {
+      "2020": 32545
+    }
   },
   {
     value: 'BGR',
-    label: 'Bulgaria'
+    label: 'Bulgaria',
+    population: {
+      "2020": 6948445 
+    },
+    area: {
+      "2020": 110910
+    }
   },
   {
     value: 'CAN',
-    label: 'Canada'
+    label: 'Canada',
+    population: {
+      "2020": 37742154 
+    },
+    area: {
+      "2020": 9976140
+    }
   },
   {
     value: 'HRV',
-    label: 'Croatia'
+    label: 'Croatia',
+    population: {
+      "2020": 4105267
+    },
+    area: {
+      "2020": 56542
+    }
   },
   {
     value: 'CYP',
-    label: 'Cyprus'
+    label: 'Cyprus',
+    population: {
+      "2020": 1207359 
+    },
+    area: {
+      "2020": 9250
+    }
   },
   {
     value: 'CZE',
-    label: 'Czech Republic'
+    label: 'Czech Republic',
+    population: {
+      "2020": 10708981 
+    },
+    area: {
+      "2020": 78866
+    }
   },
   {
     value: 'DNK',
-    label: 'Denmark'
+    label: 'Denmark',
+    population: {
+      "2020": 5792202 
+    },
+    area: {
+      "2020": 43094
+    }
   },
   {
     value: 'EST',
-    label: 'Estonia'
+    label: 'Estonia',
+    population: {
+      "2020": 1326535 
+    },
+    area: {
+      "2020": 45226
+    }
   },
   {
     value: 'FIN',
-    label: 'Finland'
+    label: 'Finland',
+    population: {
+      "2020": 5540720 
+    },
+    area: {
+      "2020": 337030
+    }
   },
   {
     value: 'FRA',
-    label: 'France'
+    label: 'France',
+    population: {
+      "2020": 65273511 
+    },
+    area: {
+      "2020": 547030
+    }
   },
   {
     value: 'DEU',
-    label: 'Germany'
+    label: 'Germany',
+    population: {
+      "2020": 83783942 
+    },
+    area: {
+      "2020": 357021
+    }
   },
   {
     value: 'GRC',
-    label: 'Greece'
+    label: 'Greece',
+    population: {
+      "2020": 10423054 
+    },
+    area: {
+      "2020": 131940
+    }
   },
   {
     value: 'HUN',
-    label: 'Hungary'
+    label: 'Hungary',
+    population: {
+      "2020": 9660351 
+    },
+    area: {
+      "2020": 93030
+    }
   },
   {
     value: 'ISL',
-    label: 'Iceland'
+    label: 'Iceland',
+    population: {
+      "2020": 341243 
+    },
+    area: {
+      "2020": 103000
+    }
   },
   {
     value: 'IRL',
-    label: 'Ireland'
+    label: 'Ireland',
+    population: {
+      "2020": 4937786 
+    },
+    area: {
+      "2020": 70273
+    }
   },
   {
     value: 'ITA',
-    label: 'Italy'
+    label: 'Italy',
+    population: {
+      "2020": 60461826 
+    },
+    area: {
+      "2020": 301230
+    }
   },
   {
     value: 'JPN',
-    label: 'Japan'
+    label: 'Japan',
+    population: {
+      "2020": 126476461 
+    },
+    area: {
+      "2020": 377835
+    }
   },
   {
     value: 'LVA',
-    label: 'Latvia'
+    label: 'Latvia',
+    population: {
+      "2020": 1886198 
+    },
+    area: {
+      "2020": 0
+    }
   },
   {
     value: 'LIE',
-    label: 'Liechtenstein'
+    label: 'Liechtenstein',
+    population: {
+      "2020": 38128 
+    },
+    area: {
+      "2020": 64589
+    }
   },
   {
     value: 'LTU',
-    label: 'Lithuania'
+    label: 'Lithuania',
+    population: {
+      "2020": 2722289 
+    },
+    area: {
+      "2020": 65200
+    }
   },
   {
     value: 'LUX',
-    label: 'Luxembourg'
+    label: 'Luxembourg',
+    population: {
+      "2020": 625978 
+    },
+    area: {
+      "2020": 2586
+    }
   },
   {
     value: 'MLT',
-    label: 'Malta'
+    label: 'Malta',
+    population: {
+      "2020": 441543 
+    },
+    area: {
+      "2020": 316
+    }
   },
   {
     value: 'MCO',
-    label: 'Monaco'
+    label: 'Monaco',
+    population: {
+      "2020": 39242 
+    },
+    area: {
+      "2020": 2
+    }
   },
   {
     value: 'NLD',
-    label: 'Netherlands'
+    label: 'Netherlands',
+    population: {
+      "2020": 17134872 
+    },
+    area: {
+      "2020": 41526
+    }
   },
   {
     value: 'NZL',
-    label: 'New Zealand'
+    label: 'New Zealand',
+    population: {
+      "2020": 4822233 
+    },
+    area: {
+      "2020": 268680
+    }
   },
   {
     value: 'NOR',
-    label: 'Norway'
+    label: 'Norway',
+    population: {
+      "2020": 5421241 
+    },
+    area: {
+      "2020": 324220
+    }
   },
   {
     value: 'POL',
-    label: 'Poland'
+    label: 'Poland',
+    population: {
+      "2020": 37846611 
+    },
+    area: {
+      "2020": 312685
+    }
   },
   {
     value: 'PRT',
-    label: 'Portugal'
+    label: 'Portugal',
+    population: {
+      "2020": 10196709 
+    },
+    area: {
+      "2020": 92391
+    }
   },
   {
     value: 'ROU',
-    label: 'Romania'
+    label: 'Romania',
+    population: {
+      "2020": 19237691 
+    },
+    area: {
+      "2020": 237500
+    }
   },
   {
     value: 'RUS',
-    label: 'Russian Federation'
+    label: 'Russian Federation',
+    population: {
+      "2020": 144386830 
+    },
+    area: {
+      "2020": 17098246
+    }
   },
   {
     value: 'SVK',
-    label: 'Slovakia'
+    label: 'Slovakia',
+    population: {
+      "2020": 5459642 
+    },
+    area: {
+      "2020": 48845
+    }
   },
   {
     value: 'SVN',
-    label: 'Slovenia'
+    label: 'Slovenia',
+    population: {
+      "2020": 2078938 
+    },
+    area: {
+      "2020": 20253
+    }
   },
   {
     value: 'ESP',
-    label: 'Spain'
+    label: 'Spain',
+    population: {
+      "2020": 46754778 
+    },
+    area: {
+      "2020": 504782
+    }
   },
   {
     value: 'SWE',
-    label: 'Sweden'
+    label: 'Sweden',
+    population: {
+      "2020": 10099265 
+    },
+    area: {
+      "2020": 449964
+    }
   },
   {
     value: 'CHE',
-    label: 'Switzerland'
+    label: 'Switzerland',
+    population: {
+      "2020": 8654622 
+    },
+    area: {
+      "2020": 41290
+    }
   },
   {
     value: 'TUR',
-    label: 'Turkey'
+    label: 'Turkey',
+    population: {
+      "2020": 84339067 
+    },
+    area: {
+      "2020": 780580
+    }
   },
   {
     value: 'UKR',
-    label: 'Ukraine'
+    label: 'Ukraine',
+    population: {
+      "2020": 43733762 
+    },
+    area: {
+      "2020": 603628
+    }
   },
   {
     value: 'GBR',
-    label: 'United Kingdom of Great Britain and Northern Ireland'
+    label: 'United Kingdom of Great Britain and Northern Ireland',
+    population: {
+      "2020": 67886011 
+    },
+    area: {
+      "2020": 244820
+    }
   },
   {
     value: 'USA',
-    label: 'United States of America'
+    label: 'United States of America',
+    population: {
+      "2020": 331002651 
+    },
+    area: {
+      "2020": 9429091
+    }
   },
   {
     value: 'EU1',
-    label: 'European Union'
+    label: 'European Union',
+    population: {
+      "2020": 447706209 
+    },
+    area: {
+      "2020": 3892685
+    }
   }
 ]
 
