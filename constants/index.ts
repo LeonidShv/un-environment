@@ -1,7 +1,8 @@
 // https://uk.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BA%D1%80%D0%B0%D1%97%D0%BD_%D0%B7%D0%B0_%D0%BF%D0%BB%D0%BE%D1%89%D0%B5%D1%8E
 // https://uk.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BA%D1%80%D0%B0%D1%97%D0%BD_%D0%B7%D0%B0_%D0%BD%D0%B0%D1%81%D0%B5%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F%D0%BC
+import type { ICountry, IElement }from '@/interfaces/common'
 
-export const countries = [
+export const countries: ICountry[] = [
   {
     value: 'AUS',
     label: 'Australia',
@@ -434,7 +435,7 @@ export const countries = [
   }
 ]
 
-export const elements = [
+export const elements: IElement[] = [
   {
     value: 'EN_ATM_METH_XLULUCF',
     label: 'Methane (CH4)'
@@ -465,7 +466,7 @@ export const elements = [
   }
 ]
 
-export const years = [
+export const years: string[] = [
   '1990',
   '1991',
   '1992',
@@ -499,7 +500,7 @@ export const years = [
   '2020'
 ]
 
-export const colors = [
+export const colors: string[] = [
   '#EA906C',
   '#B31312',
   '#2B2A4C',

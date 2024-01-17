@@ -8,11 +8,11 @@ export enum DatePickerType {
   year = 'year',
   date = 'date',
   dates = 'dates',
-  daterange = 'daterange',
+  daterange = 'daterange'
 }
 
 export enum DatePickerSize {
   default = 'default',
   large = 'large',
-  small = 'small',
+  small = 'small'
 }

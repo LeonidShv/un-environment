@@ -1,5 +1,5 @@
 export interface IChartPie {
-  labels: string[]
+  labels: string[] | undefined
   datasets: IPieDataset[]
 }
 

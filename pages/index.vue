@@ -25,7 +25,7 @@
     </VForm>
     <div class="chart-default-wrapper">
       <!-- <VChart :data="chartDefault" type="Bar" /> -->
-      <VChart :data="chartDefault" type="Line" />
+      <VChart :data="chartDefault" :type="ChartType.Line" />
     </div>
 
     <h2 class="m-b-1 m-t-2">Different countries | one element | one year</h2>
@@ -59,8 +59,8 @@
         <VDatePicker
           v-model="ruleForm.yearForPieChart"
           placeholder="Pick a year"
-          type="year"
-          size="default"
+          :type="DatePickerType.year"
+          :size="DatePickerSize.default"
           @change="modifyPieChartCriteria"
         />
       </VFormItem>
@@ -79,8 +79,12 @@ import { countries, elements, years, colors } from '@/constants'
 
 import type { FormInstance, FormRules } from 'element-plus'
 import type { IChartPie, IChartDefault } from '@/interfaces/chart'
-import type { IParamsEnvironment } from '@/interfaces/common'
-import { ChartType } from '@/interfaces/enums';
+import type {
+  IParamsEnvironment,
+  IDataSetsSeries,
+  IStructureSeries
+} from '@/interfaces/common'
+import { ChartType, DatePickerType, DatePickerSize } from '@/interfaces/enums'
 
 const store = useEnvironmentStore()
 const {
@@ -99,8 +103,6 @@ const chartDefault = ref<IChartDefault>({
 })
 
 const modifyDefaultChartCriteria = async () => {
-  console.log('test deb');
-  
   const params: IParamsEnvironment = {
     detail: 'full',
     startPeriod: '1960-01-01',
@@ -122,8 +124,6 @@ const modifyDefaultChartCriteria = async () => {
     datasets,
     labels: years
   }
-
-  console.log(chartDefault.value);
 }
 
 const elementForPieChart = ref('EN_ATM_CO2E_XLULUCF')
@@ -175,8 +175,8 @@ const modifyPieChartCriteria = async () => {
   const datasets = getPieChartData(dataSetsSeriesForPieChart.value)
 
   const areaStructure = structureSeriesForPieChart.value
-    .find(({ role }) => role === 'REF_AREA')
-    .values.map(({ name }) => name)
+    ?.find(({ role }) => role === 'REF_AREA')
+    ?.values.map(({ name }) => name)
 
   chartPie.value = {
     datasets,
@@ -184,22 +184,22 @@ const modifyPieChartCriteria = async () => {
   }
 }
 
-function getChartData(dataSetsSeries, structureSeries) {
-  const areaStructure = structureSeries.find(
+function getChartData(dataSetsSeries: IDataSetsSeries, structureSeries: IStructureSeries[]) {
+  const areaStructure = structureSeries?.find(
     ({ role }) => role === 'REF_AREA'
-  ).values
+  )?.values
 
   const datasets = []
   let index = 0
 
   for (let key in dataSetsSeries) {
     const rest = Object.entries(dataSetsSeries[key].observations)
-      .sort((a, b) => a[0] - b[0])
-      .map((item) => item[1][0])
+      .sort((a: any, b: any) => Number(a[0]) - Number(b[0]))
+      .map((item: any) => item[1][0])
 
     datasets.push({
       data: rest,
-      label: areaStructure[index].name,
+      label: areaStructure ? areaStructure[index].name : '',
       backgroundColor: colors[index] || '#607274',
       borderColor: colors[index] || '#607274'
     })
@@ -208,7 +208,7 @@ function getChartData(dataSetsSeries, structureSeries) {
   return datasets
 }
 
-function getPieChartData(dataSetsSeries) {
+function getPieChartData(dataSetsSeries: IDataSetsSeries) {
   const data = []
   const backgroundColor = []
   const borderColor = []
@@ -216,8 +216,8 @@ function getPieChartData(dataSetsSeries) {
 
   for (let key in dataSetsSeries) {
     const rest = Object.entries(dataSetsSeries[key].observations)
-      .sort((a, b) => a[0] - b[0])
-      .map((item) => item[1][0])
+      .sort((a: any, b: any) => a[0] - b[0])
+      .map((item: any) => item[1][0])
 
     data.push(rest[0])
     backgroundColor.push(colors[index] || '#607274')
