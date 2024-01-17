@@ -2,14 +2,11 @@
   <el-menu
     class="navigation gap-2"
     :collapse="false"
-    @open="handleOpen"
-    @close="handleClose"
     router
-    :default-active="loadedUrl"
     mode="horizontal"
   >
     <el-menu-item
-      v-for="({ disabled, icon, path, label }, i) in navigation"
+      v-for="({ disabled, path, label }, i) in navigation"
       :key="i"
       :index="path"
       :disabled="disabled"
@@ -19,12 +16,15 @@
   </el-menu>
 </template>
 
-<script setup>
-defineProps({
-  navigation: {
-    type: Array,
-    default: () => [],
-  }
+<script setup lang="ts">
+import type { INavigationItem } from '@/interfaces/navigation'
+
+interface Props {
+  navigation: INavigationItem[]
+}
+
+withDefaults(defineProps<Props>(), {
+  navigation: () => []
 });
 </script>
 

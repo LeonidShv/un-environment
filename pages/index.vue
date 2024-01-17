@@ -98,6 +98,8 @@ const chartDefault = ref<IChartDefault>({
 })
 
 const modifyDefaultChartCriteria = async () => {
+  console.log('test deb');
+  
   const params = {
     detail: 'full',
     startPeriod: '1960-01-01',

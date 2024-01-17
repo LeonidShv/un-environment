@@ -7,35 +7,27 @@
   />
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { DatePickerType, DatePickerSize } from '@/interfaces/enums'
 const emit = defineEmits(["update:v-model", "change"]);
 
-defineProps({
-  loading: {
-    type: Boolean,
-    default: false
-  },
-  placeholder: {
-    type: String,
-    default: ''
-  },
-  type: {
-    type: String,
-    default: 'date',
-    validator(value) {
-      return ['year', 'date', 'dates', 'daterange'].includes(value)
-    }
-  },
-  size: {
-    type: String,
-    default: 'default',
-    validator(value) {
-      return ['default', 'large', 'small'].includes(value)
-    }
-  }
+interface Props {
+  loading: boolean
+  placeholder: string
+  type: DatePickerType
+  size: DatePickerSize
+}
+
+withDefaults(defineProps<Props>(), {
+  loading: false,
+  placeholder: '',
+  type: DatePickerType.date,
+  size: DatePickerSize.default,
 })
 
-function onChange(date) {
+function onChange(date: Date) {
+  console.log(date, typeof date);
+  
   emit('update:v-model', date)
   emit('change', date)
 }

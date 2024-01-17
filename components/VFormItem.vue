@@ -4,11 +4,12 @@
   </el-form-item>
 </template>
 
-<script setup>
-defineProps({
-  prop: {
-    type: String,
-    default: ''
-  },
+<script setup lang="ts">
+interface Props {
+  prop: string
+}
+
+withDefaults(defineProps<Props>(), {
+  prop: ''
 });
 </script>

@@ -7,17 +7,22 @@
   </main>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 
-const navigation = ref([
+import type { INavigationItem } from '@/interfaces/navigation'
+import type { Ref } from 'vue'
+
+const navigation: Ref<INavigationItem[]> = ref([
   {
     path: "/",
     label: "Information",
+    disabled: false,
   },
   {
     path: "/",
     label: "Cases",
+    disabled: false,
   },
   {
     path: "/",
