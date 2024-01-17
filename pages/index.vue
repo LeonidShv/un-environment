@@ -79,6 +79,7 @@ import { countries, elements, years, colors } from '@/constants'
 
 import type { FormInstance, FormRules } from 'element-plus'
 import type { IChartPie, IChartDefault } from '@/interfaces/chart'
+import type { IParamsEnvironment } from '@/interfaces/common'
 import { ChartType } from '@/interfaces/enums';
 
 const store = useEnvironmentStore()
@@ -100,7 +101,7 @@ const chartDefault = ref<IChartDefault>({
 const modifyDefaultChartCriteria = async () => {
   console.log('test deb');
   
-  const params = {
+  const params: IParamsEnvironment = {
     detail: 'full',
     startPeriod: '1960-01-01',
     endPeriod: '2020-12-31',
@@ -158,7 +159,7 @@ function checkYear(rule: any, value: any, callback: any) {
 const modifyPieChartCriteria = async () => {
   const year = new Date(ruleForm.yearForPieChart).getFullYear()
 
-  const params = {
+  const params: IParamsEnvironment = {
     detail: 'full',
     startPeriod: `${year}-01-01`,
     endPeriod: `${year}-12-31`,

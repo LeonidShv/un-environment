@@ -1,11 +1,10 @@
 <template>
   <el-select
-    class="Select"
+    class="select"
     @update:model-value="(value) => $emit('update:v-model', value)"
     :multiple="multiple"
     collapse-tags
     :placeholder="placeholder"
-    style="width: 240px"
     :filterable="filterable"
     @change="onChange"
   >
@@ -19,49 +18,33 @@
   </el-select>
 </template>
 
-<script setup>
-const emit = defineEmits(["update:v-model", "change"]);
+<script setup lang="ts">
+import { useDebounceFn } from '@vueuse/core'
 
-defineProps({
-  options: {
-    type: Array,
-    default: () => [],
-  },
-  placeholder: {
-    type: String,
-    default: "",
-  },
-  filterable: {
-    type: Boolean,
-    default: false,
-  },
-  multiple: {
-    type: Boolean,
-    default: false,
-  }
+interface Props {
+  options: any[]
+  placeholder: string
+  filterable: boolean
+  multiple: boolean
+}
+
+withDefaults(defineProps<Props>(), {
+  options: () => [],
+  placeholder: '',
+  filterable: false,
+  multiple: false
 });
 
-const onChange = debounce((value) => {
-  // not work
-  emit('change', value)
-}, 500)
+const emit = defineEmits(["update:v-model", "change"]);
 
-function debounce(fn, wait) {
-  let timer
-  return function (...args) {
-    if (timer) {
-      clearTimeout(timer) // clear any pre-existing timer
-    }
-    const context = this // get the current context
-    timer = setTimeout(() => {
-      fn.apply(context, args) // call the function if time expires
-    }, wait)
-  }
-}
+const onChange = useDebounceFn((value: string[] | string) => {
+  emit('change', value)
+}, 750)
 </script>
 
 <style lang="scss" scoped>
-.Select {
+.select {
+  width: 240px;
   min-width: 160px;
 }
 </style>

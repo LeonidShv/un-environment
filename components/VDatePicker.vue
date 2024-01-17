@@ -26,8 +26,6 @@ withDefaults(defineProps<Props>(), {
 })
 
 function onChange(date: Date) {
-  console.log(date, typeof date);
-  
   emit('update:v-model', date)
   emit('change', date)
 }
