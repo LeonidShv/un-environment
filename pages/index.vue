@@ -23,9 +23,13 @@
         />
       </VFormItem>
     </VForm>
-    <div class="chart-default-wrapper">
+    <div class="chart-default-wrapper d-flex">
       <!-- <VChart :data="chartDefault" type="Bar" /> -->
-      <VChart :data="chartDefault" :type="ChartType.Line" />
+      <VChart :data="chartDefault" :type="chartType" />
+      <VRadioButtons 
+        v-model="chartType" 
+        :options="chartTypes"
+      />
     </div>
 
     <h2 class="m-b-1 m-t-2">Different countries | one element | one year</h2>
@@ -59,14 +63,14 @@
         <VDatePicker
           v-model="ruleForm.yearForPieChart"
           placeholder="Pick a year"
-          :type="DatePickerType.year"
-          :size="DatePickerSize.default"
+          :type="EDatePickerType.year"
+          :size="EDatePickerSize.default"
           @change="modifyPieChartCriteria"
         />
       </VFormItem>
     </VForm>
     <div class="chart-pie-wrapper">
-      <VChart :data="chartPie" :type="ChartType.Pie" />
+      <VChart :data="chartPie" :type="EChartType.Pie" />
     </div>
   </section>
 </template>
@@ -84,7 +88,7 @@ import type {
   IDataSetsSeries,
   IStructureSeries
 } from '@/interfaces/common'
-import { ChartType, DatePickerType, DatePickerSize } from '@/interfaces/enums'
+import { EChartType, EDatePickerType, EDatePickerSize } from '@/interfaces/enums'
 
 const store = useEnvironmentStore()
 const {
@@ -101,6 +105,17 @@ const chartDefault = ref<IChartDefault>({
   labels: [],
   datasets: []
 })
+const chartType = ref(EChartType.Line)
+const chartTypes = [
+  {
+    value: EChartType.Line,
+    label: EChartType.Line
+  },
+  {
+    value: EChartType.Bar,
+    label: EChartType.Bar
+  }
+]
 
 const modifyDefaultChartCriteria = async () => {
   const params: IParamsEnvironment = {

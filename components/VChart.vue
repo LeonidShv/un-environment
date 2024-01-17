@@ -21,7 +21,7 @@ import {
 import { Line, Bar, Pie } from 'vue-chartjs'
 
 import type { IChartPie, IChartDefault } from '@/interfaces/chart'
-import { ChartType } from '@/interfaces/enums';
+import { EChartType } from '@/interfaces/enums';
 
 ChartJS.register(
   CategoryScale,
@@ -37,12 +37,12 @@ ChartJS.register(
 )
 
 interface Props {
-  type: ChartType
+  type: EChartType
   data: IChartPie | IChartDefault | any
 }
 
 withDefaults(defineProps<Props>(), {
-  type: ChartType.Line,
+  type: EChartType.Line,
   data: {}
 })
 

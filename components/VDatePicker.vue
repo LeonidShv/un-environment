@@ -8,21 +8,21 @@
 </template>
 
 <script setup lang="ts">
-import { DatePickerType, DatePickerSize } from '@/interfaces/enums'
+import { EDatePickerType, EDatePickerSize } from '@/interfaces/enums'
 const emit = defineEmits(["update:v-model", "change"]);
 
 interface Props {
   loading: boolean
   placeholder: string
-  type: DatePickerType
-  size: DatePickerSize
+  type: EDatePickerType
+  size: EDatePickerSize
 }
 
 withDefaults(defineProps<Props>(), {
   loading: false,
   placeholder: '',
-  type: DatePickerType.date,
-  size: DatePickerSize.default,
+  type: EDatePickerType.date,
+  size: EDatePickerSize.default,
 })
 
 function onChange(date: Date) {
