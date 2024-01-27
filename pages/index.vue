@@ -1,6 +1,8 @@
 <template>
   <section class="m-t-2">
     <h2 class="m-b-1">Different countries | one element</h2>
+    <!-- TODO: move to components each section -->
+    <h3>Absolute values</h3>
     <VForm class="d-flex gap-1 m-b-1">
       <VFormItem>
         <VSelect
@@ -23,16 +25,13 @@
         />
       </VFormItem>
     </VForm>
-    <div class="chart-default-wrapper d-flex">
-      <!-- <VChart :data="chartDefault" type="Bar" /> -->
-      <VChart :data="chartDefault" :type="chartType" />
-      <VRadioButtons 
-        v-model="chartType" 
-        :options="chartTypes"
-      />
+    <div class="d-flex">
+      <VChart class="chart" :data="chartDefault" :type="chartType" caption="Picture 1. Emissions from various countries, measured in tons, over different years." />
+      <VRadioButtons class="radio-buttons" v-model="chartType" :options="chartTypes" />
     </div>
 
     <h2 class="m-b-1 m-t-2">Different countries | one element | one year</h2>
+    <h3>Absolute values</h3>
     <VForm
       class="d-flex gap-1 m-b-1"
       ref="ruleFormRef"
@@ -69,8 +68,36 @@
         />
       </VFormItem>
     </VForm>
-    <div class="chart-pie-wrapper">
-      <VChart :data="chartPie" :type="EChartType.Pie" />
+    <VChart style="width: 33vw;" :data="chartPie" :type="EChartType.Pie" caption="Picture 2. Emissions from various countries, measured in tons in the chosen year." />
+
+    <h2 class="m-b-1 m-t-2">Different countries | one element | 2020 year</h2>
+    <h3>Relative values</h3>
+    <VForm class="d-flex gap-1 m-b-1">
+      <VFormItem>
+        <VSelect
+          v-model="elementForPieRelativeChart"
+          :options="elements"
+          placeholder="Elements"
+          filterable
+          @change="modifyPieRelativeChartCriteria"
+        />
+      </VFormItem>
+
+      <VFormItem>
+        <VSelect
+          v-model="countriesForPieRelativeChart"
+          :options="countries"
+          filterable
+          placeholder="Countries"
+          multiple
+          @change="modifyPieRelativeChartCriteria"
+        />
+      </VFormItem>
+    </VForm>
+    <div class="d-flex gap-2">
+      <VChart class="chart--pie" :data="chartPieRelative" :type="EChartType.Pie" caption="Picture 3. Emissions from various countries, measured in tons in the 2020." />
+      <VChart class="chart--pie" :data="chartPiePerPerson" :type="EChartType.Pie" caption="Picture 4.Emissions from various countries, measured in tons per person in the 2020." />
+      <VChart class="chart--pie" :data="chartPiePerArea" :type="EChartType.Pie" caption="Picture 5. Emissions from various countries, measured in tons per square kilometer in the year 2020." />
     </div>
   </section>
 </template>
@@ -88,16 +115,34 @@ import type {
   IDataSetsSeries,
   IStructureSeries
 } from '@/interfaces/common'
-import { EChartType, EDatePickerType, EDatePickerSize } from '@/interfaces/enums'
+import {
+  EChartType,
+  EDatePickerType,
+  EDatePickerSize
+} from '@/interfaces/enums'
+
+interface Point {
+  a: number
+  b: number
+}
+
+const TONS_PER_GG_COEFFICIENT = 1000
 
 const store = useEnvironmentStore()
 const {
   dataSetsSeriesForDefaultChart,
   structureSeriesForDefaultChart,
   dataSetsSeriesForPieChart,
-  structureSeriesForPieChart
+  structureSeriesForPieChart,
+  dataSetsSeriesForPieRelativeChart,
+  structureSeriesForPieRelativeChart
 } = storeToRefs(store)
-const { readEnvironmentDefaultChart, readEnvironmentPieChart } = store
+
+const {
+  readEnvironmentDefaultChart,
+  readEnvironmentPieChart,
+  readEnvironmentPieRelativeChart
+} = store
 
 const elementForDefaultChart = ref('EN_ATM_CO2E_XLULUCF')
 const countriesForDefaultChart = ref(['AUS'])
@@ -139,6 +184,48 @@ const modifyDefaultChartCriteria = async () => {
     datasets,
     labels: years
   }
+}
+
+function getAreaStructure(structureSeriesForPieChart: IStructureSeries[]) {
+  if (!structureSeriesForPieChart || !structureSeriesForPieChart) {
+    return undefined
+  }
+
+  const refAreaItem = structureSeriesForPieChart.find(
+    ({ role }) => role === 'REF_AREA'
+  )
+
+  if (!refAreaItem || !refAreaItem.values) {
+    return undefined
+  }
+
+  const areaStructure = refAreaItem.values.map(({ name }) => name)
+  return areaStructure
+}
+
+function getChartData(
+  dataSetsSeries: IDataSetsSeries,
+  structureSeries: IStructureSeries[]
+) {
+  const areaStructure = getAreaStructure(structureSeries)
+
+  const datasets = []
+  let index = 0
+
+  for (let key in dataSetsSeries) {
+    const rest = Object.entries(dataSetsSeries[key].observations)
+      .sort((a: any, b: any) => Number(a[0]) - Number(b[0]))
+      .map((item: any) => Math.round(item[1][0] * TONS_PER_GG_COEFFICIENT))
+
+    datasets.push({
+      data: rest,
+      label: areaStructure ? areaStructure[index] : '',
+      backgroundColor: colors[index] || '#607274',
+      borderColor: colors[index] || '#607274'
+    })
+    index++
+  }
+  return datasets
 }
 
 const elementForPieChart = ref('EN_ATM_CO2E_XLULUCF')
@@ -189,38 +276,12 @@ const modifyPieChartCriteria = async () => {
 
   const datasets = getPieChartData(dataSetsSeriesForPieChart.value)
 
-  const areaStructure = structureSeriesForPieChart.value
-    ?.find(({ role }) => role === 'REF_AREA')
-    ?.values.map(({ name }) => name)
+  const areaStructure = getAreaStructure(structureSeriesForPieChart.value)
 
   chartPie.value = {
     datasets,
     labels: areaStructure
   }
-}
-
-function getChartData(dataSetsSeries: IDataSetsSeries, structureSeries: IStructureSeries[]) {
-  const areaStructure = structureSeries?.find(
-    ({ role }) => role === 'REF_AREA'
-  )?.values
-
-  const datasets = []
-  let index = 0
-
-  for (let key in dataSetsSeries) {
-    const rest = Object.entries(dataSetsSeries[key].observations)
-      .sort((a: any, b: any) => Number(a[0]) - Number(b[0]))
-      .map((item: any) => item[1][0])
-
-    datasets.push({
-      data: rest,
-      label: areaStructure ? areaStructure[index].name : '',
-      backgroundColor: colors[index] || '#607274',
-      borderColor: colors[index] || '#607274'
-    })
-    index++
-  }
-  return datasets
 }
 
 function getPieChartData(dataSetsSeries: IDataSetsSeries) {
@@ -232,7 +293,7 @@ function getPieChartData(dataSetsSeries: IDataSetsSeries) {
   for (let key in dataSetsSeries) {
     const rest = Object.entries(dataSetsSeries[key].observations)
       .sort((a: any, b: any) => a[0] - b[0])
-      .map((item: any) => item[1][0])
+      .map((item: any) => Math.round(item[1][0] * TONS_PER_GG_COEFFICIENT))
 
     data.push(rest[0])
     backgroundColor.push(colors[index] || '#607274')
@@ -242,26 +303,89 @@ function getPieChartData(dataSetsSeries: IDataSetsSeries) {
   return [{ data, backgroundColor, borderColor }]
 }
 
-onMounted(async () => {
-  await modifyDefaultChartCriteria()
-  await modifyPieChartCriteria()
+const elementForPieRelativeChart = ref('EN_ATM_CO2E_XLULUCF')
+const countriesForPieRelativeChart = ref(['AUS'])
+const chartPieRelative = ref<IChartPie>({
+  labels: [],
+  datasets: []
 })
-</script>
+const chartPiePerPerson = ref<IChartPie>({
+  labels: [],
+  datasets: []
+})
+const chartPiePerArea = ref<IChartPie>({
+  labels: [],
+  datasets: []
+})
 
-<style lang="scss" scoped>
-.chart-default-wrapper {
-  height: 500px;
+// TODO: modifyPieRelativeChartCriteria divide on less functions
+const modifyPieRelativeChartCriteria = async () => {
+  const params: IParamsEnvironment = {
+    detail: 'full',
+    startPeriod: '2020-01-01',
+    endPeriod: '2020-12-31',
+    dimensionAtObservation: 'TIME_PERIOD'
+  }
 
-  @include laptop-lower {
-    height: 300px;
+  await readEnvironmentPieRelativeChart(
+    elementForPieRelativeChart.value,
+    countriesForPieRelativeChart.value.join('+'),
+    params
+  )
+
+  const datasets = getPieChartData(
+    dataSetsSeriesForPieRelativeChart.value)
+
+  const datasetsPerPerson = JSON.parse(JSON.stringify(datasets)); 
+  const datasetsPerArea = JSON.parse(JSON.stringify(datasets)); 
+  const areaStructure = getAreaStructure(structureSeriesForPieRelativeChart.value)
+  const filteredCountries = countries.filter(({ label }) =>
+    areaStructure?.includes(label)
+  )
+
+  datasetsPerPerson[0].data = datasets[0].data.map((item: any, i) => {
+    const emissionsPerCoefficient = item / filteredCountries[i].population['2020']
+    return emissionsPerCoefficient
+  })
+
+  datasetsPerArea[0].data = datasets[0].data.map((item: any, i) => {
+    const emissionsPerCoefficient = item / filteredCountries[i].area['2020']
+    return emissionsPerCoefficient
+  })
+  
+  chartPieRelative.value = {
+    datasets,
+    labels: areaStructure
+  }
+
+  chartPiePerPerson.value = {
+    datasets: datasetsPerPerson,
+    labels: areaStructure
+  }
+
+  chartPiePerArea.value = {
+    datasets: datasetsPerArea,
+    labels: areaStructure
   }
 }
 
-.chart-pie-wrapper {
-  height: 400px;
+onMounted(async () => {
+  await modifyDefaultChartCriteria()
+  await modifyPieChartCriteria()
+  await modifyPieRelativeChartCriteria()
+})
+</script>
 
-  @include laptop-lower {
-    height: 300px;
-  }
+<style scoped lang="scss">
+.chart {
+  flex: 3;
+}
+
+.radio-buttons {
+  flex: 1;
+}
+
+.chart--pie {
+  width: 30%;
 }
 </style>

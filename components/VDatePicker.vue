@@ -1,5 +1,6 @@
 <template>
   <el-date-picker
+    @update:model-value="(date) => $emit('update:v-model', date)"
     @change="onChange"
     :type="type"
     :placeholder="placeholder"
@@ -26,7 +27,6 @@ withDefaults(defineProps<Props>(), {
 })
 
 function onChange(date: Date) {
-  emit('update:v-model', date)
   emit('change', date)
 }
 </script>

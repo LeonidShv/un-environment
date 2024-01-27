@@ -47,6 +47,24 @@ export const useEnvironmentStore = defineStore('environment', () => {
     structureSeriesForPieChart.value = response.data.structure.dimensions.series
   }
 
+  const dataSetsSeriesForPieRelativeChart: Ref<IDataSetsSeries> = ref({})
+  const structureSeriesForPieRelativeChart: Ref<IStructureSeries[]> = ref([])
+
+  async function readEnvironmentPieRelativeChart(
+    elements: string,
+    countries: string,
+    params: IParamsEnvironment
+  ): Promise<void> {
+    const response = await api.environment.readEnvironment(
+      elements,
+      countries,
+      params
+    )
+
+    dataSetsSeriesForPieRelativeChart.value = response.data.dataSets[0].series
+    structureSeriesForPieRelativeChart.value = response.data.structure.dimensions.series
+  }
+
   return {
     readEnvironmentDefaultChart,
     dataSetsSeriesForDefaultChart,
@@ -54,6 +72,10 @@ export const useEnvironmentStore = defineStore('environment', () => {
 
     readEnvironmentPieChart,
     dataSetsSeriesForPieChart,
-    structureSeriesForPieChart
+    structureSeriesForPieChart,
+
+    readEnvironmentPieRelativeChart,
+    dataSetsSeriesForPieRelativeChart,
+    structureSeriesForPieRelativeChart
   }
 })

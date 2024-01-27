@@ -1,7 +1,13 @@
 <template>
-   <Line v-if="type === 'Line'" :data="data" :options="options" />
-   <Pie v-if="type === 'Pie'" :data="data" />
-   <Bar v-if="type === 'Bar'" :data="data" />
+<figure>
+   <Line v-if="type === 'Line'" :data="data" :style="myStyles" />
+   <Pie v-if="type === 'Pie'" :data="data" :style="myStyles" />
+   <Bar v-if="type === 'Bar'" :data="data" :style="myStyles" />
+
+    <figcaption class="m-t-2">
+      {{ caption }}
+    </figcaption>
+</figure>
 </template>
 
 <script setup lang="ts">
@@ -39,14 +45,41 @@ ChartJS.register(
 interface Props {
   type: EChartType
   data: IChartPie | IChartDefault | any
+  caption: string
 }
 
 withDefaults(defineProps<Props>(), {
   type: EChartType.Line,
-  data: {}
+  data: {},
+  caption: ''
 })
 
-const options = ref({
-  responsive: true
+const myStyles = ref({
+  height: `500px`,
+  width: '75vw',
+  position: 'relative'
 })
 </script>
+
+
+<style lang="scss" scoped>
+.chart-default-wrapper {
+  height: 500px;
+
+  @include laptop-lower {
+    height: 300px;
+  }
+}
+
+.chart-pie-wrapper {
+  height: 400px;
+
+  @include laptop-lower {
+    height: 300px;
+  }
+}
+
+figcaption {
+  color: var(--dark);
+}
+</style>
