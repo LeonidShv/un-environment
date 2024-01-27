@@ -1,37 +1,32 @@
 <template>
   <el-date-picker
-    @change="(value) => $emit('update:v-model', value)"
-    v-model="value1"
+    @update:model-value="(date) => $emit('update:v-model', date)"
+    @change="onChange"
     :type="type"
     :placeholder="placeholder"
     size="default"
-    value-format="YYYY-MM-DD"
   />
 </template>
 
-<script setup>
-defineProps({
-  loading: {
-    type: Boolean,
-    default: false
-  },
-  placeholder: {
-    type: String,
-    default: ''
-  },
-  type: {
-    type: String,
-    default: 'date',
-    validator(value) {
-      return ['year', 'date', 'dates', 'daterange'].includes(value)
-    }
-  },
-  size: {
-    type: String,
-    default: 'default',
-    validator(value) {
-      return ['default', 'large', 'small'].includes(value)
-    }
-  }
+<script setup lang="ts">
+import { EDatePickerType, EDatePickerSize } from '@/interfaces/enums'
+const emit = defineEmits(["update:v-model", "change"]);
+
+interface Props {
+  loading: boolean
+  placeholder: string
+  type: EDatePickerType
+  size: EDatePickerSize
+}
+
+withDefaults(defineProps<Props>(), {
+  loading: false,
+  placeholder: '',
+  type: EDatePickerType.date,
+  size: EDatePickerSize.default,
 })
+
+function onChange(date: Date) {
+  emit('change', date)
+}
 </script>

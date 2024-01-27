@@ -1,10 +1,16 @@
 <template>
-   <Line v-if="type === 'Line'" :data="data" :options="options" />
-   <Pie v-if="type === 'Pie'" :data="data" />
-   <Bar v-if="type === 'Bar'" :data="data" />
+<figure>
+   <Line v-if="type === 'Line'" :data="data" :style="myStyles" />
+   <Pie v-if="type === 'Pie'" :data="data" :style="myStyles" />
+   <Bar v-if="type === 'Bar'" :data="data" :style="myStyles" />
+
+    <figcaption class="m-t-2">
+      {{ caption }}
+    </figcaption>
+</figure>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -20,6 +26,9 @@ import {
 } from 'chart.js'
 import { Line, Bar, Pie } from 'vue-chartjs'
 
+import type { IChartPie, IChartDefault } from '@/interfaces/chart'
+import { EChartType } from '@/interfaces/enums';
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -33,25 +42,44 @@ ChartJS.register(
   Colors
 )
 
-const options = ref({
-  responsive: true
+interface Props {
+  type: EChartType
+  data: IChartPie | IChartDefault | any
+  caption: string
+}
+
+withDefaults(defineProps<Props>(), {
+  type: EChartType.Line,
+  data: {},
+  caption: ''
 })
 
-// const Pie = resolveComponent('Pie')
-// const Line = resolveComponent('Line')
-// const Bar = resolveComponent('Bar')
-
-defineProps({
-  type: {
-    type: String,
-    default: 'Line',
-    validator(value) {
-      return ['Pie', 'Line', 'Bar'].includes(value)
-    }
-  },
-  data: {
-    type: Object,
-    default: () => {}
-  }
+const myStyles = ref({
+  height: `500px`,
+  width: '75vw',
+  position: 'relative'
 })
 </script>
+
+
+<style lang="scss" scoped>
+.chart-default-wrapper {
+  height: 500px;
+
+  @include laptop-lower {
+    height: 300px;
+  }
+}
+
+.chart-pie-wrapper {
+  height: 400px;
+
+  @include laptop-lower {
+    height: 300px;
+  }
+}
+
+figcaption {
+  color: var(--dark);
+}
+</style>
