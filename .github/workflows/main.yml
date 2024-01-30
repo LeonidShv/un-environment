@@ -7,7 +7,10 @@ on:
   #     - main
   #     - test-1
   pull_request:
-    branches: [test-1,main,qa]
+    branches:
+      - qa
+      - main
+      - test-1
     types: [opened, reopened, edited]
 
 jobs:
@@ -16,7 +19,7 @@ jobs:
     if: github.ref_name == 'test-1'
     strategy:
       matrix:
-        node-version: [20.11.x] # here you can add many different node versions 
+        node-version: [20.11.x] # here you can add many different node versions
 
     steps:
       - uses: actions/checkout@v3
@@ -31,9 +34,9 @@ jobs:
 
       - name: Setup .env
         run: |
-            echo "VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}" > .env
-            echo "VITE_BACKEND_VERSION=${{ secrets.VITE_BACKEND_VERSION }}" >> .env
-        
+          echo "VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}" > .env
+          echo "VITE_BACKEND_VERSION=${{ secrets.VITE_BACKEND_VERSION }}" >> .env
+
       # - name: Run test
       #   run: npm test # HERE run cypress
 
