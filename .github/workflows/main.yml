@@ -1,17 +1,17 @@
 name: UN Environment
 
 on:
-  push:
-    branches:
-      - qa
-      - main
-      - test-1
-  # pull_request:
+  # push:
   #   branches:
   #     - qa
   #     - main
   #     - test-1
-    # types: [opened, reopened, edited]
+  pull_request:
+    branches:
+      - qa
+      - main
+      - test-1
+    types: [opened, reopened, edited]
 
 jobs:
   build:
