@@ -1,8 +1,7 @@
 name: UN Environment
 on:
-  pull_request_review:
-    types: [submitted]
   issue_comment
+
 
 jobs:
   build:
