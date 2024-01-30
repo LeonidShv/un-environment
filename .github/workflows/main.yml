@@ -8,14 +8,14 @@ on:
       - main
 
 jobs:
-  # build:
-  #   name: "Test and build app"
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     matrix:
-  #       node-version: [20.x] # here you can add many different node versions
+  build:
+    name: "Test and build app"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x] # here you can add many different node versions
 
-  #   steps:
+    steps:
       - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
@@ -43,7 +43,7 @@ jobs:
       # - name: Deploy app
       #   TODO
   reruntest:
-      if: contains(github.event.comment.body, 'rerun test')
+    if: contains(github.event.comment.body, 'rerun test')
     runs-on: ubuntu-latest
     strategy:
       matrix:
