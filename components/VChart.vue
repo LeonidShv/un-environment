@@ -1,13 +1,13 @@
 <template>
-<figure>
-   <Line v-if="type === 'Line'" :data="data" :style="myStyles" />
-   <Pie v-if="type === 'Pie'" :data="data" :style="myStyles" />
-   <Bar v-if="type === 'Bar'" :data="data" :style="myStyles" />
+  <figure>
+    <Line v-if="type === 'Line'" :data="data" :style="myStyles" />
+    <Pie v-if="type === 'Pie'" :data="data" :style="myStyles" />
+    <Bar v-if="type === 'Bar'" :data="data" :style="myStyles" />
 
     <figcaption class="m-t-2">
       {{ caption }}
     </figcaption>
-</figure>
+  </figure>
 </template>
 
 <script setup lang="ts">
@@ -22,12 +22,12 @@ import {
   Title,
   Tooltip,
   Legend,
-  Colors
-} from 'chart.js'
-import { Line, Bar, Pie } from 'vue-chartjs'
+  Colors,
+} from "chart.js";
+import { Line, Bar, Pie } from "vue-chartjs";
 
-import type { IChartPie, IChartDefault } from '@/interfaces/chart'
-import { EChartType } from '@/interfaces/enums';
+import type { IChartPie, IChartDefault } from "@/interfaces/chart";
+import { EChartType } from "@/interfaces/enums";
 
 ChartJS.register(
   CategoryScale,
@@ -39,28 +39,27 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
-  Colors
-)
+  Colors,
+);
 
 interface Props {
-  type: EChartType
-  data: IChartPie | IChartDefault | any
-  caption: string
+  type: EChartType;
+  data: IChartPie | IChartDefault | any;
+  caption: string;
 }
 
 withDefaults(defineProps<Props>(), {
   type: EChartType.Line,
   data: {},
-  caption: ''
-})
+  caption: "",
+});
 
 const myStyles = ref({
   height: `500px`,
-  width: '75vw',
-  position: 'relative'
-})
+  width: "75vw",
+  position: "relative",
+});
 </script>
-
 
 <style lang="scss" scoped>
 .chart-default-wrapper {

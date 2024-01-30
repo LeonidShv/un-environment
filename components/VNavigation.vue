@@ -1,10 +1,5 @@
 <template>
-  <el-menu
-    class="navigation gap-2"
-    :collapse="false"
-    router
-    mode="horizontal"
-  >
+  <el-menu class="navigation gap-2" :collapse="false" router mode="horizontal">
     <el-menu-item
       v-for="({ disabled, path, label }, i) in navigation"
       :key="i"
@@ -17,14 +12,14 @@
 </template>
 
 <script setup lang="ts">
-import type { INavigationItem } from '@/interfaces/navigation'
+import type { INavigationItem } from "@/interfaces/navigation";
 
 interface Props {
-  navigation: INavigationItem[]
+  navigation: INavigationItem[];
 }
 
 withDefaults(defineProps<Props>(), {
-  navigation: () => []
+  navigation: () => [],
 });
 </script>
 

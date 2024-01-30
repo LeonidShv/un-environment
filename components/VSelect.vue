@@ -1,11 +1,11 @@
 <template>
   <el-select
     class="select"
-    @update:model-value="(value) => $emit('update:v-model', value)"
     :multiple="multiple"
     collapse-tags
     :placeholder="placeholder"
     :filterable="filterable"
+    @update:model-value="(value) => $emit('update:v-model', value)"
     @change="onChange"
   >
     <el-option
@@ -19,27 +19,27 @@
 </template>
 
 <script setup lang="ts">
-import { useDebounceFn } from '@vueuse/core'
+import { useDebounceFn } from "@vueuse/core";
 
 interface Props {
-  options: any[]
-  placeholder: string
-  filterable: boolean
-  multiple: boolean
+  options: any[];
+  placeholder: string;
+  filterable: boolean;
+  multiple: boolean;
 }
 
 withDefaults(defineProps<Props>(), {
   options: () => [],
-  placeholder: '',
+  placeholder: "",
   filterable: false,
-  multiple: false
+  multiple: false,
 });
 
 const emit = defineEmits(["update:v-model", "change"]);
 
 const onChange = useDebounceFn((value: string[] | string) => {
-  emit('change', value)
-}, 750)
+  emit("change", value);
+}, 750);
 </script>
 
 <style lang="scss" scoped>
