@@ -1,7 +1,7 @@
 name: UN Environment
 
 on:
-  issue_comment:
+  push:
 
 jobs:
   build:
