@@ -20,5 +20,5 @@ jobs:
           cache: "npm"
       - name: print body
         run: |
-          echo "VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}" 
+          echo "${{ github.event.comment.body }}" 
 
