@@ -8,14 +8,13 @@ on:
 jobs:
   build:
     name: "Test and build app"
-    if: ((github.event_name == 'issue_comment' && contains(github.event.comment.body, 'rerun test') && github.event.issue.pull_request != null) || (github.event_name == 'pull_request_review' && contains(github.event.review.body, 'rerun test')))
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [12.x]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3`
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
@@ -29,3 +28,5 @@ jobs:
         else
           echo "${{ github.event.review.body }}"
         fi
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # required for gh
