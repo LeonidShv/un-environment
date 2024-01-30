@@ -17,14 +17,12 @@ on:
   #   types: [opened, reopened, edited,synchronize]
 
   # push:
-  # pull_request:
-  #   branches:
-  #     - qa
-  #     - main
-  #     - test-1
   pull_request:
-    types: [opened, synchronize, reopened]
-
+    branches:
+      - qa
+      - main
+      - test-1
+      - test-2
 jobs:
   build:
     runs-on: ubuntu-latest
