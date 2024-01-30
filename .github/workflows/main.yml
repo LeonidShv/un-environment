@@ -1,0 +1,42 @@
+name: UN Environment
+
+on:
+  pull_request:
+    branches:
+      - qa
+      - main
+      - test-1
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.6.1] # here you can add many different node versions
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - name: Install dependency
+        run: npm install
+
+      - name: Setup .env
+        run: |
+          echo "VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}" > .env
+          echo "VITE_BACKEND_VERSION=${{ secrets.VITE_BACKEND_VERSION }}" >> .env
+
+      # - name: Run test
+      #   run: npm test # HERE run cypress
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Build app
+        run: npm run build
+
+      # - name: Deploy app
+      #   TODO
