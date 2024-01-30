@@ -26,7 +26,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.ref_name == 'test-1'
     strategy:
       matrix:
         node-version: [20.6.1] # here you can add many different node versions
