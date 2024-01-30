@@ -1,6 +1,7 @@
 name: UN Environment
 
 on:
+  issue_comment:
   pull_request:
     branches:
       - dev
@@ -41,3 +42,20 @@ jobs:
 
       # - name: Deploy app
       #   TODO
+  reruntest:
+      if: contains(github.event.comment.body, 'rerun test')
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x] # here you can add many different node versions
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - name: Install dependency
+        run: npm install
