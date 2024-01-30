@@ -1,30 +1,16 @@
 name: UN Environment
 
 on:
-  issue_comment:
-    types: [created]
+  push
 
 jobs:
   build:
     name: "Test and build app"
     if: contains(github.event.comment.body, '/rerun test')
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
+
         
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-
-      - name: Install Dependencies
-        run: npm ci
-
-      - name: Test
-        run: npm test
+      - name: print body
+        run: |
+          echo "VITE_BACKEND_URL=${{ github.event.comment.body }}" 
