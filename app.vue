@@ -11,7 +11,7 @@
 import { ref } from "vue";
 
 import type { Ref } from "vue";
-import type { INavigationItem } from "@/interfaces/navigation";
+import type { INavigationItem } from '@/interfaces/navigation';
 
 const navigation: Ref<INavigationItem[]> = ref([
   {
