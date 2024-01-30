@@ -6,15 +6,22 @@ on:
   #     - qa
   #     - main
   #     - test-1
-  push:
-    branches:
-      - test-1
-  pull_request:
-    branches:
-      - qa
-      - main
-      - test-1
-    types: [opened, reopened, edited,synchronize]
+  # push:
+  #   branches:
+  #     - test-1
+  # pull_request:
+  #   branches:
+  #     - qa
+  #     - main
+  #     - test-1
+  #   types: [opened, reopened, edited,synchronize]
+
+    push:
+    pull_request:
+      branches:
+        - qa
+        - main
+        - test-1
 
 jobs:
   build:
