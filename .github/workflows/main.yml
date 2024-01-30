@@ -8,6 +8,7 @@ on:
   #     - test-1
   pull_request:
     branches: [test-1,main,qa]
+    types: [opened, reopened, edited]
 
 jobs:
   build:
