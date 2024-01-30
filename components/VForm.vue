@@ -1,26 +1,21 @@
 <template>
-  <el-form 
-    :ref="ref" 
-    :model="model" 
-    :rules="rules" 
-    class="form"
-  >
+  <el-form :ref="refForm" :model="model" :rules="rules" class="form">
     <slot />
   </el-form>
 </template>
 
 <script setup lang="ts">
 export interface Props {
-  ref?: string
-  model: any
-  rules: any
+  refForm?: string;
+  model: any;
+  rules: any;
 }
 
 withDefaults(defineProps<Props>(), {
-  ref: '',
+  refForm: "",
   model: {},
-  rules: {}
-})
+  rules: {},
+});
 </script>
 
 <style lang="scss" scoped>

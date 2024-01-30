@@ -10,8 +10,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import type { INavigationItem } from '@/interfaces/navigation'
-import type { Ref } from 'vue'
+import type { Ref } from "vue";
+import type { INavigationItem } from "@/interfaces/navigation";
 
 const navigation: Ref<INavigationItem[]> = ref([
   {
@@ -28,10 +28,10 @@ const navigation: Ref<INavigationItem[]> = ref([
     path: "/",
     label: "Conclusions",
     disabled: true,
-  }
+  },
 ]);
 </script>
 
 <style lang="scss">
-@import './assets/styles/main.scss';
+@import "./assets/styles/main.scss";
 </style>

@@ -1,513 +1,513 @@
 // https://uk.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BA%D1%80%D0%B0%D1%97%D0%BD_%D0%B7%D0%B0_%D0%BF%D0%BB%D0%BE%D1%89%D0%B5%D1%8E
 // https://uk.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BA%D1%80%D0%B0%D1%97%D0%BD_%D0%B7%D0%B0_%D0%BD%D0%B0%D1%81%D0%B5%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F%D0%BC
-import type { ICountry, IElement }from '@/interfaces/common'
+import type { ICountry, IElement } from "@/interfaces/common";
 
 export const countries: ICountry[] = [
   {
-    value: 'AUS',
-    label: 'Australia',
+    value: "AUS",
+    label: "Australia",
     population: {
-      "2020": 25499884 
+      "2020": 25499884,
     },
     area: {
-      "2020": 7686850
-    }
+      "2020": 7686850,
+    },
   },
   {
-    value: 'AUT',
-    label: 'Austria',
+    value: "AUT",
+    label: "Austria",
     population: {
-      "2020": 9006398 
+      "2020": 9006398,
     },
     area: {
-      "2020": 83858
-    }
+      "2020": 83858,
+    },
   },
   {
-    value: 'BLR',
-    label: 'Belarus',
+    value: "BLR",
+    label: "Belarus",
     population: {
-      "2020": 9449323 
+      "2020": 9449323,
     },
     area: {
-      "2020": 207600
-    }
+      "2020": 207600,
+    },
   },
   {
-    value: 'BEL',
-    label: 'Belgium',
+    value: "BEL",
+    label: "Belgium",
     population: {
-      "2020": 11589623 
+      "2020": 11589623,
     },
     area: {
-      "2020": 32545
-    }
+      "2020": 32545,
+    },
   },
   {
-    value: 'BGR',
-    label: 'Bulgaria',
+    value: "BGR",
+    label: "Bulgaria",
     population: {
-      "2020": 6948445 
+      "2020": 6948445,
     },
     area: {
-      "2020": 110910
-    }
+      "2020": 110910,
+    },
   },
   {
-    value: 'CAN',
-    label: 'Canada',
+    value: "CAN",
+    label: "Canada",
     population: {
-      "2020": 37742154 
+      "2020": 37742154,
     },
     area: {
-      "2020": 9976140
-    }
+      "2020": 9976140,
+    },
   },
   {
-    value: 'HRV',
-    label: 'Croatia',
+    value: "HRV",
+    label: "Croatia",
     population: {
-      "2020": 4105267
+      "2020": 4105267,
     },
     area: {
-      "2020": 56542
-    }
+      "2020": 56542,
+    },
   },
   {
-    value: 'CYP',
-    label: 'Cyprus',
+    value: "CYP",
+    label: "Cyprus",
     population: {
-      "2020": 1207359 
+      "2020": 1207359,
     },
     area: {
-      "2020": 9250
-    }
+      "2020": 9250,
+    },
   },
   {
-    value: 'CZE',
-    label: 'Czech Republic',
+    value: "CZE",
+    label: "Czech Republic",
     population: {
-      "2020": 10708981 
+      "2020": 10708981,
     },
     area: {
-      "2020": 78866
-    }
+      "2020": 78866,
+    },
   },
   {
-    value: 'DNK',
-    label: 'Denmark',
+    value: "DNK",
+    label: "Denmark",
     population: {
-      "2020": 5792202 
+      "2020": 5792202,
     },
     area: {
-      "2020": 43094
-    }
+      "2020": 43094,
+    },
   },
   {
-    value: 'EST',
-    label: 'Estonia',
+    value: "EST",
+    label: "Estonia",
     population: {
-      "2020": 1326535 
+      "2020": 1326535,
     },
     area: {
-      "2020": 45226
-    }
+      "2020": 45226,
+    },
   },
   {
-    value: 'FIN',
-    label: 'Finland',
+    value: "FIN",
+    label: "Finland",
     population: {
-      "2020": 5540720 
+      "2020": 5540720,
     },
     area: {
-      "2020": 337030
-    }
+      "2020": 337030,
+    },
   },
   {
-    value: 'FRA',
-    label: 'France',
+    value: "FRA",
+    label: "France",
     population: {
-      "2020": 65273511 
+      "2020": 65273511,
     },
     area: {
-      "2020": 547030
-    }
+      "2020": 547030,
+    },
   },
   {
-    value: 'DEU',
-    label: 'Germany',
+    value: "DEU",
+    label: "Germany",
     population: {
-      "2020": 83783942 
+      "2020": 83783942,
     },
     area: {
-      "2020": 357021
-    }
+      "2020": 357021,
+    },
   },
   {
-    value: 'GRC',
-    label: 'Greece',
+    value: "GRC",
+    label: "Greece",
     population: {
-      "2020": 10423054 
+      "2020": 10423054,
     },
     area: {
-      "2020": 131940
-    }
+      "2020": 131940,
+    },
   },
   {
-    value: 'HUN',
-    label: 'Hungary',
+    value: "HUN",
+    label: "Hungary",
     population: {
-      "2020": 9660351 
+      "2020": 9660351,
     },
     area: {
-      "2020": 93030
-    }
+      "2020": 93030,
+    },
   },
   {
-    value: 'ISL',
-    label: 'Iceland',
+    value: "ISL",
+    label: "Iceland",
     population: {
-      "2020": 341243 
+      "2020": 341243,
     },
     area: {
-      "2020": 103000
-    }
+      "2020": 103000,
+    },
   },
   {
-    value: 'IRL',
-    label: 'Ireland',
+    value: "IRL",
+    label: "Ireland",
     population: {
-      "2020": 4937786 
+      "2020": 4937786,
     },
     area: {
-      "2020": 70273
-    }
+      "2020": 70273,
+    },
   },
   {
-    value: 'ITA',
-    label: 'Italy',
+    value: "ITA",
+    label: "Italy",
     population: {
-      "2020": 60461826 
+      "2020": 60461826,
     },
     area: {
-      "2020": 301230
-    }
+      "2020": 301230,
+    },
   },
   {
-    value: 'JPN',
-    label: 'Japan',
+    value: "JPN",
+    label: "Japan",
     population: {
-      "2020": 126476461 
+      "2020": 126476461,
     },
     area: {
-      "2020": 377835
-    }
+      "2020": 377835,
+    },
   },
   {
-    value: 'LVA',
-    label: 'Latvia',
+    value: "LVA",
+    label: "Latvia",
     population: {
-      "2020": 1886198 
+      "2020": 1886198,
     },
     area: {
-      "2020": 0
-    }
+      "2020": 0,
+    },
   },
   {
-    value: 'LIE',
-    label: 'Liechtenstein',
+    value: "LIE",
+    label: "Liechtenstein",
     population: {
-      "2020": 38128 
+      "2020": 38128,
     },
     area: {
-      "2020": 64589
-    }
+      "2020": 64589,
+    },
   },
   {
-    value: 'LTU',
-    label: 'Lithuania',
+    value: "LTU",
+    label: "Lithuania",
     population: {
-      "2020": 2722289 
+      "2020": 2722289,
     },
     area: {
-      "2020": 65200
-    }
+      "2020": 65200,
+    },
   },
   {
-    value: 'LUX',
-    label: 'Luxembourg',
+    value: "LUX",
+    label: "Luxembourg",
     population: {
-      "2020": 625978 
+      "2020": 625978,
     },
     area: {
-      "2020": 2586
-    }
+      "2020": 2586,
+    },
   },
   {
-    value: 'MLT',
-    label: 'Malta',
+    value: "MLT",
+    label: "Malta",
     population: {
-      "2020": 441543 
+      "2020": 441543,
     },
     area: {
-      "2020": 316
-    }
+      "2020": 316,
+    },
   },
   {
-    value: 'MCO',
-    label: 'Monaco',
+    value: "MCO",
+    label: "Monaco",
     population: {
-      "2020": 39242 
+      "2020": 39242,
     },
     area: {
-      "2020": 2
-    }
+      "2020": 2,
+    },
   },
   {
-    value: 'NLD',
-    label: 'Netherlands',
+    value: "NLD",
+    label: "Netherlands",
     population: {
-      "2020": 17134872 
+      "2020": 17134872,
     },
     area: {
-      "2020": 41526
-    }
+      "2020": 41526,
+    },
   },
   {
-    value: 'NZL',
-    label: 'New Zealand',
+    value: "NZL",
+    label: "New Zealand",
     population: {
-      "2020": 4822233 
+      "2020": 4822233,
     },
     area: {
-      "2020": 268680
-    }
+      "2020": 268680,
+    },
   },
   {
-    value: 'NOR',
-    label: 'Norway',
+    value: "NOR",
+    label: "Norway",
     population: {
-      "2020": 5421241 
+      "2020": 5421241,
     },
     area: {
-      "2020": 324220
-    }
+      "2020": 324220,
+    },
   },
   {
-    value: 'POL',
-    label: 'Poland',
+    value: "POL",
+    label: "Poland",
     population: {
-      "2020": 37846611 
+      "2020": 37846611,
     },
     area: {
-      "2020": 312685
-    }
+      "2020": 312685,
+    },
   },
   {
-    value: 'PRT',
-    label: 'Portugal',
+    value: "PRT",
+    label: "Portugal",
     population: {
-      "2020": 10196709 
+      "2020": 10196709,
     },
     area: {
-      "2020": 92391
-    }
+      "2020": 92391,
+    },
   },
   {
-    value: 'ROU',
-    label: 'Romania',
+    value: "ROU",
+    label: "Romania",
     population: {
-      "2020": 19237691 
+      "2020": 19237691,
     },
     area: {
-      "2020": 237500
-    }
+      "2020": 237500,
+    },
   },
   {
-    value: 'RUS',
-    label: 'Russian Federation',
+    value: "RUS",
+    label: "Russian Federation",
     population: {
-      "2020": 144386830 
+      "2020": 144386830,
     },
     area: {
-      "2020": 17098246
-    }
+      "2020": 17098246,
+    },
   },
   {
-    value: 'SVK',
-    label: 'Slovakia',
+    value: "SVK",
+    label: "Slovakia",
     population: {
-      "2020": 5459642 
+      "2020": 5459642,
     },
     area: {
-      "2020": 48845
-    }
+      "2020": 48845,
+    },
   },
   {
-    value: 'SVN',
-    label: 'Slovenia',
+    value: "SVN",
+    label: "Slovenia",
     population: {
-      "2020": 2078938 
+      "2020": 2078938,
     },
     area: {
-      "2020": 20253
-    }
+      "2020": 20253,
+    },
   },
   {
-    value: 'ESP',
-    label: 'Spain',
+    value: "ESP",
+    label: "Spain",
     population: {
-      "2020": 46754778 
+      "2020": 46754778,
     },
     area: {
-      "2020": 504782
-    }
+      "2020": 504782,
+    },
   },
   {
-    value: 'SWE',
-    label: 'Sweden',
+    value: "SWE",
+    label: "Sweden",
     population: {
-      "2020": 10099265 
+      "2020": 10099265,
     },
     area: {
-      "2020": 449964
-    }
+      "2020": 449964,
+    },
   },
   {
-    value: 'CHE',
-    label: 'Switzerland',
+    value: "CHE",
+    label: "Switzerland",
     population: {
-      "2020": 8654622 
+      "2020": 8654622,
     },
     area: {
-      "2020": 41290
-    }
+      "2020": 41290,
+    },
   },
   {
-    value: 'TUR',
-    label: 'Turkey',
+    value: "TUR",
+    label: "Turkey",
     population: {
-      "2020": 84339067 
+      "2020": 84339067,
     },
     area: {
-      "2020": 780580
-    }
+      "2020": 780580,
+    },
   },
   {
-    value: 'UKR',
-    label: 'Ukraine',
+    value: "UKR",
+    label: "Ukraine",
     population: {
-      "2020": 43733762 
+      "2020": 43733762,
     },
     area: {
-      "2020": 603628
-    }
+      "2020": 603628,
+    },
   },
   {
-    value: 'GBR',
-    label: 'United Kingdom of Great Britain and Northern Ireland',
+    value: "GBR",
+    label: "United Kingdom of Great Britain and Northern Ireland",
     population: {
-      "2020": 67886011 
+      "2020": 67886011,
     },
     area: {
-      "2020": 244820
-    }
+      "2020": 244820,
+    },
   },
   {
-    value: 'USA',
-    label: 'United States of America',
+    value: "USA",
+    label: "United States of America",
     population: {
-      "2020": 331002651 
+      "2020": 331002651,
     },
     area: {
-      "2020": 9429091
-    }
+      "2020": 9429091,
+    },
   },
   {
-    value: 'EU1',
-    label: 'European Union',
+    value: "EU1",
+    label: "European Union",
     population: {
-      "2020": 447706209 
+      "2020": 447706209,
     },
     area: {
-      "2020": 3892685
-    }
-  }
-]
+      "2020": 3892685,
+    },
+  },
+];
 
 export const elements: IElement[] = [
   {
-    value: 'EN_ATM_METH_XLULUCF',
-    label: 'Methane (CH4)'
+    value: "EN_ATM_METH_XLULUCF",
+    label: "Methane (CH4)",
   },
   {
-    value: 'EN_ATM_CO2E_XLULUCF',
-    label: 'Carbon dioxide (CO2)'
+    value: "EN_ATM_CO2E_XLULUCF",
+    label: "Carbon dioxide (CO2)",
   },
   {
-    value: 'EN_CLC_GHGE_XLULUCF',
-    label: 'Greenhouse Gas (GHGs)'
+    value: "EN_CLC_GHGE_XLULUCF",
+    label: "Greenhouse Gas (GHGs)",
   },
   {
-    value: 'EN_ATM_HFCE',
-    label: 'Hydrofluorocarbons (HFCs)'
+    value: "EN_ATM_HFCE",
+    label: "Hydrofluorocarbons (HFCs)",
   },
   {
-    value: 'EN_ATM_NO2E_XLULUCF',
-    label: 'Nitrous oxide (N2O)'
+    value: "EN_ATM_NO2E_XLULUCF",
+    label: "Nitrous oxide (N2O)",
   },
   {
-    value: 'EN_ATM_PFCE',
-    label: 'Perfluorocarbons (PFCs)'
+    value: "EN_ATM_PFCE",
+    label: "Perfluorocarbons (PFCs)",
   },
   {
-    value: 'EN_ATM_SF6E',
-    label: 'Sulphur hexafluoride (SF6)'
-  }
-]
+    value: "EN_ATM_SF6E",
+    label: "Sulphur hexafluoride (SF6)",
+  },
+];
 
 export const years: string[] = [
-  '1990',
-  '1991',
-  '1992',
-  '1993',
-  '1994',
-  '1995',
-  '1996',
-  '1997',
-  '1998',
-  '1999',
-  '2000',
-  '2001',
-  '2002',
-  '2003',
-  '2004',
-  '2005',
-  '2006',
-  '2007',
-  '2008',
-  '2009',
-  '2010',
-  '2011',
-  '2012',
-  '2013',
-  '2014',
-  '2015',
-  '2016',
-  '2017',
-  '2018',
-  '2019',
-  '2020'
-]
+  "1990",
+  "1991",
+  "1992",
+  "1993",
+  "1994",
+  "1995",
+  "1996",
+  "1997",
+  "1998",
+  "1999",
+  "2000",
+  "2001",
+  "2002",
+  "2003",
+  "2004",
+  "2005",
+  "2006",
+  "2007",
+  "2008",
+  "2009",
+  "2010",
+  "2011",
+  "2012",
+  "2013",
+  "2014",
+  "2015",
+  "2016",
+  "2017",
+  "2018",
+  "2019",
+  "2020",
+];
 
 export const colors: string[] = [
-  '#EA906C',
-  '#B31312',
-  '#2B2A4C',
-  '#A7D397',
-  '#E26EE5',
-  '#7E30E1',
-  '#525CEB',
-  '#596FB7',
-  '#597E52'
-]
+  "#EA906C",
+  "#B31312",
+  "#2B2A4C",
+  "#A7D397",
+  "#E26EE5",
+  "#7E30E1",
+  "#525CEB",
+  "#596FB7",
+  "#597E52",
+];

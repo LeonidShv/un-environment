@@ -1,22 +1,20 @@
-export interface IChartPie {
-  labels: string[] | undefined
-  datasets: IPieDataset[]
-}
-
 interface IPieDataset {
-  backgroundColor: string[]
-  borderColor: string[]
-  data: number[]
+  backgroundColor: string[];
+  borderColor: string[];
+  data: number[];
 }
-
-export interface IChartDefault {
-  labels: string[]
-  datasets: IDefaultDataset[]
+export interface IChartPie {
+  labels: string[] | undefined;
+  datasets: IPieDataset[];
 }
 
 interface IDefaultDataset {
-  backgroundColor: string
-  borderColor: string
-  data: number[]
-  label: string
+  backgroundColor: string;
+  borderColor: string;
+  data: number[];
+  label: string;
+}
+export interface IChartDefault {
+  labels: string[];
+  datasets: IDefaultDataset[];
 }
