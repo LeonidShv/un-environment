@@ -11,7 +11,7 @@ on:
       - qa
       - main
       - test-1
-    types: [opened, reopened, edited]
+    types: [opened, reopened, edited,synchronize]
 
 jobs:
   build:
@@ -19,7 +19,7 @@ jobs:
     if: github.ref_name == 'test-1'
     strategy:
       matrix:
-        node-version: [20.11.x] # here you can add many different node versions
+        node-version: [20.6.1] # here you can add many different node versions
 
     steps:
       - uses: actions/checkout@v3
