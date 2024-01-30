@@ -6,10 +6,10 @@
 
 <script setup lang="ts">
 interface Props {
-  prop: string
+  prop: string;
 }
 
 withDefaults(defineProps<Props>(), {
-  prop: ''
+  prop: "",
 });
 </script>

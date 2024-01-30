@@ -1,12 +1,8 @@
 <template>
-  <ElButton class="Button" v-if="type === 'default'">
+  <ElButton v-if="type === 'default'" class="Button">
     <slot />
   </ElButton>
-  <router-link
-    v-else-if="type === 'back'"
-    :to="to"
-    class="button__link"
-  >
+  <router-link v-else-if="type === 'back'" :to="to" class="button__link">
     <ArrowLeft class="button__icon" />Back
     <span>|</span>
   </router-link>
@@ -14,16 +10,16 @@
 
 <script setup lang="ts">
 export interface Props {
-  loading?: boolean
-  type: "default" | "back"
-  to: string
+  loading?: boolean;
+  type: "default" | "back";
+  to: string;
 }
 
 withDefaults(defineProps<Props>(), {
-  label: '',
-  type: 'default',
-  to: ''
-})
+  label: "",
+  type: "default",
+  to: "",
+});
 </script>
 
 <style lang="scss" scoped>
