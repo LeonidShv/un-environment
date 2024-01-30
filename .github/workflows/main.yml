@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     name: Test and Build App
+    if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
