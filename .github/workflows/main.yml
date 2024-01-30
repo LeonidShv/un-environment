@@ -1,10 +1,6 @@
 name: UN Environment
 
-on:
-  pull_request_comment:
-    branches:
-      - dev
-      - main
+on: [pull_request_comment]
 
 jobs:
   build:
