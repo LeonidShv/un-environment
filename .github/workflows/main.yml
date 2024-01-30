@@ -1,7 +1,8 @@
 name: UN Environment
 
 on:
-  issue_comment:
+  pull_request_review_comment:
+    types: [created]
 
 jobs:
   build:
