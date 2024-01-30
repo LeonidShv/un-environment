@@ -6,6 +6,9 @@ on:
   #     - qa
   #     - main
   #     - test-1
+  push:
+    branches:
+      - test-1
   pull_request:
     branches:
       - qa
