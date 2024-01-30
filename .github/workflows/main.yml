@@ -3,15 +3,15 @@ name: UN Environment
 on:
   pull_request:
     branches:
-      - qa
+      - dev
       - main
-      - test-1
+
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20.6.1] # here you can add many different node versions
+        node-version: [20] # here you can add many different node versions
 
     steps:
       - uses: actions/checkout@v3
