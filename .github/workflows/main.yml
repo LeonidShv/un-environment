@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     name: "Test and build app"
-    if: contains(github.event.comment.body, 'rerun test')
+    if: contains(github.event.comment.body, '/rerun test')
     runs-on: ubuntu-latest
     strategy:
       matrix:
