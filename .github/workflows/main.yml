@@ -23,7 +23,7 @@ on:
   #     - main
   #     - test-1
   pull_request:
-    types: [opened]
+    types: [opened, synchronize, reopened]
 
 jobs:
   build:
