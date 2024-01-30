@@ -12,7 +12,8 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x]
-
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # required for gh
     steps:
     - uses: actions/checkout@v3`
     - name: Use Node.js ${{ matrix.node-version }}
@@ -28,5 +29,3 @@ jobs:
         else
           echo "${{ github.event.review.body }}"
         fi
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # required for gh
