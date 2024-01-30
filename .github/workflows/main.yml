@@ -16,12 +16,14 @@ on:
   #     - test-1
   #   types: [opened, reopened, edited,synchronize]
 
-    push:
-    pull_request:
-      branches:
-        - qa
-        - main
-        - test-1
+  # push:
+  # pull_request:
+  #   branches:
+  #     - qa
+  #     - main
+  #     - test-1
+  pull_request:
+    types: [opened]
 
 jobs:
   build:
