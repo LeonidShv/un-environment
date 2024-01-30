@@ -2,9 +2,6 @@ name: UN Environment
 
 on:
   issue_comment:
-    branches:
-      - dev
-      - main
 
 jobs:
   reruntest:
