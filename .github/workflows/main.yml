@@ -1,34 +1,14 @@
 name: UN Environment
 
 on:
-  # push:
-  #   branches:
-  #     - qa
-  #     - main
-  #     - test-1
-  # push:
-  #   branches:
-  #     - test-1
-  # pull_request:
-  #   branches:
-  #     - qa
-  #     - main
-  #     - test-1
-  #   types: [opened, reopened, edited,synchronize]
-
-  # push:
-  # pull_request:
-  #   branches:
-  #     - qa
-  #     - main
-  #     - test-1
   pull_request:
-    types: [opened, synchronize, reopened]
-
+    branches:
+      - qa
+      - main
+      - test-1
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.ref_name == 'test-1'
     strategy:
       matrix:
         node-version: [20.6.1] # here you can add many different node versions
