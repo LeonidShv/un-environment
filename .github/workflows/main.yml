@@ -7,6 +7,7 @@ on:
       - main
 jobs:
   build:
+    name: 'Test and build app'
     runs-on: ubuntu-latest
     strategy:
       matrix:
