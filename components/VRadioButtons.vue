@@ -11,14 +11,14 @@
 
 <script setup lang="ts">
 interface Props {
-  options: any[]
+  options: any[];
 }
 
 withDefaults(defineProps<Props>(), {
-  options: () => []
-})
+  options: () => [],
+});
 
-const emit = defineEmits(['update:v-model'])
+defineEmits(["update:v-model"]);
 </script>
 
 <style lang="scss" scoped>

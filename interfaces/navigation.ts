@@ -1,5 +1,5 @@
 export interface INavigationItem {
-  path: string
-  label: string
-  disabled: boolean
+  path: string;
+  label: string;
+  disabled: boolean;
 }
