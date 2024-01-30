@@ -7,10 +7,7 @@ on:
   #     - main
   #     - test-1
   pull_request:
-    branches:
-      - qa
-      - main
-      - test-1
+    branches: [test-1,main,qa]
 
 jobs:
   build:
