@@ -238,8 +238,8 @@ function getChartData(
 
   for (const key in dataSetsSeries) {
     const rest = Object.entries(dataSetsSeries[key].observations)
-      .sort((a: any, b: any) => Number(a[0]) - Number(b[0]))
-      .map((item: any) => Math.round(item[1][0] * TONS_PER_GG_COEFFICIENT));
+      .sort((a, b) => Number(a[0]) - Number(b[0]))
+      .map((item) => Math.round(item[1][0] * TONS_PER_GG_COEFFICIENT));
 
     datasets.push({
       data: rest,
@@ -316,8 +316,8 @@ function getPieChartData(dataSetsSeries: IDataSetsSeries) {
 
   for (const key in dataSetsSeries) {
     const rest = Object.entries(dataSetsSeries[key].observations)
-      .sort((a: any, b: any) => a[0] - b[0])
-      .map((item: any) => Math.round(item[1][0] * TONS_PER_GG_COEFFICIENT));
+      .sort((a, b) => Number(a[0]) - Number(b[0]))
+      .map((item) => Math.round(item[1][0] * TONS_PER_GG_COEFFICIENT));
 
     data.push(rest[0]);
     backgroundColor.push(colors[index] || "#607274");
