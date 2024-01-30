@@ -11,7 +11,7 @@ on:
       - qa
       - main
       - test-1
-    types: [opened, reopened, edited]
+    # types: [opened, reopened, edited]
 
 jobs:
   build:
