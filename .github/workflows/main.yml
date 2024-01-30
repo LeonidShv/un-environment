@@ -1,28 +1,24 @@
-name: UN Environment
 on: issue_comment
 
-
 jobs:
-  build:
-    name: Test and Build App
+  pr_commented:
+    # This job only runs for pull request comments
+    name: PR comment
     if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node_version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: "npm"
-    - name: print body
-      run: |
-        echo "${{ github.event_name }}"
-        if [ "${{ github.event_name }}" = "issue_comment" ]; then
-          echo "${{ github.event.comment.body }}"
-        else
-          echo "${{ github.event.review.body }}"
-        fi
+      - run: |
+          echo A comment on PR $NUMBER
+        env:
+          NUMBER: ${{ github.event.issue.number }}
+
+  issue_commented:
+    # This job only runs for issue comments
+    name: Issue comment
+    if: ${{ !github.event.issue.pull_request }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo A comment on issue $NUMBER
+        env:
+          NUMBER: ${{ github.event.issue.number }}
