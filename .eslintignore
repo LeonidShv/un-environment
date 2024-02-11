@@ -1,0 +1,5 @@
+temp.js
+**/*.json
+server/tsconfig.json
+.gitignore
+.
