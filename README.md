@@ -6,6 +6,9 @@
 
 `https://data.un.org/SdmxBrowser/start`
 
+## Bundle analyze
+npx nuxi analyze
+
 ## Setup
 
 Make sure to install the dependencies:
