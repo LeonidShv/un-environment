@@ -11,6 +11,7 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from "vue";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -48,7 +49,7 @@ interface Props {
   caption: string;
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   type: EChartType.Line,
   data: {},
   caption: "",
@@ -58,6 +59,10 @@ const myStyles = ref({
   height: `500px`,
   width: "75vw",
   position: "relative",
+});
+
+onMounted(() => {
+  console.log(props.type, props.data);
 });
 </script>
 
