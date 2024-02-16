@@ -60,10 +60,6 @@ const myStyles = ref({
   width: "75vw",
   position: "relative",
 });
-
-onMounted(() => {
-  console.log(props.type, props.data);
-});
 </script>
 
 <style lang="scss" scoped>

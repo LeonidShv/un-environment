@@ -20,9 +20,9 @@
 </template>
 
 <script setup lang="ts">
-import TheDefaultChart from "@/pages/Dashboard/components/TheDefaultChart";
-import ThePiaChartAbsolute from "@/pages/Dashboard/components/ThePiaChartAbsolute";
-import ThePiaChartRelative from "@/pages/Dashboard/components/ThePiaChartRelative";
+import TheDefaultChart from "@/pages/Dashboard/components/TheDefaultChart.vue";
+import ThePiaChartAbsolute from "@/pages/Dashboard/components/ThePiaChartAbsolute.vue";
+import ThePiaChartRelative from "@/pages/Dashboard/components/ThePiaChartRelative.vue";
 </script>
 
 <style lang="scss">

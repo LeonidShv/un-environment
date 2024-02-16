@@ -9,9 +9,24 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import { useEventBus } from "@vueuse/core";
+import { ElNotification } from "element-plus";
 
 import type { Ref } from "vue";
 import type { INavigationItem } from "@/interfaces/navigation";
+
+const { on } = useEventBus("vue-use-event-bus");
+
+interface IElNotification {
+  type: string;
+  title: string;
+  message: string;
+  position: string;
+}
+
+on((params: IElNotification | any) => {
+  ElNotification(params);
+});
 
 const navigation: Ref<INavigationItem[]> = ref([
   {
