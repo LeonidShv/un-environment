@@ -7,7 +7,7 @@ import type {
   IParamsEnvironment,
   IDataSetsSeries,
   IStructureSeries,
-} from "@/interfaces/common";
+} from "@/pages/Dashboard/interfaces/environment.ts";
 
 export const useEnvironmentStore = defineStore("environment", () => {
   const dataSetsSeriesForDefaultChart: Ref<IDataSetsSeries> = ref({});

@@ -1,6 +1,8 @@
-import type { IStructureSeries } from "@/interfaces/common";
-import type { IDataSetsSeries } from "@/interfaces/common";
 import { colors } from "@/constants";
+import type {
+  IStructureSeries,
+  IDataSetsSeries,
+} from "@/pages/Dashboard/interfaces/environment.ts";
 
 const tonsPerGGCoefficient = 1000;
 

@@ -39,7 +39,7 @@
 <script setup lang="ts">
 import { countries, elements, years } from "@/constants";
 
-import type { IParamsEnvironment } from "@/interfaces/common";
+import type { IParamsEnvironment } from "@/pages/Dashboard/interfaces/environment.ts";
 import type { IChartDefault } from "@/interfaces/chart";
 import { EChartType } from "@/interfaces/enums";
 import { useDashboard } from "@/pages/Dashboard/composables/dashboard";

@@ -45,7 +45,7 @@
 
 <script setup lang="ts">
 import type { IChartPie } from "@/interfaces/chart";
-import type { IParamsEnvironment } from "@/interfaces/common";
+import type { IParamsEnvironment } from "@/pages/Dashboard/interfaces/environment.ts";
 import { countries, elements } from "@/constants";
 import { useDashboard } from "@/pages/Dashboard/composables/dashboard";
 import { EChartType } from "@/interfaces/enums";
