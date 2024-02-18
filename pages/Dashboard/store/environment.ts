@@ -1,13 +1,13 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
 import type { Ref } from "vue";
-import api from "@/api";
+import api from "@/pages/Dashboard/api";
 
 import type {
   IParamsEnvironment,
   IDataSetsSeries,
   IStructureSeries,
-} from "@/interfaces/common";
+} from "@/pages/Dashboard/interfaces/environment.ts";
 
 export const useEnvironmentStore = defineStore("environment", () => {
   const dataSetsSeriesForDefaultChart: Ref<IDataSetsSeries> = ref({});

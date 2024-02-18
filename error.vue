@@ -1,10 +1,17 @@
 <template>
-  <!-- TODO: test and refactor -->
   <section class="error">
     <div class="m-auto">
       <Vue3Lottie :animation-data="notFoundPage" :height="200" :width="200" />
 
-      <p class="Error-text">Not found page, please go back to the home page.</p>
+      <template v-if="error.statusCode === 404">
+        <h1>404!</h1>
+        <p class="Error-text">
+          Not found page, please go back to the home page.
+        </p>
+      </template>
+      <template v-else>
+        <p>{{ error.message }}</p>
+      </template>
 
       <a class="error-link" @click="handleError">
         <VButton> Go home </VButton>
@@ -18,7 +25,7 @@ import { Vue3Lottie } from "vue3-lottie";
 
 import notFoundPage from "@/assets/animations/notFoundPage.json";
 
-// const error = useError();
+const error = useError();
 
 const handleError = () => {
   clearError({
