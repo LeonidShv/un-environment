@@ -1,4 +1,4 @@
-import { colors } from "@/constants";
+import { colors, additionalColor } from "@/constants";
 import type {
   IStructureSeries,
   IDataSetsSeries,
@@ -36,8 +36,8 @@ export function useDashboard() {
         .map((item) => Math.round(item[1][0] * tonsPerGGCoefficient));
 
       data.push(rest[0]);
-      backgroundColor.push(colors[index] || "#607274");
-      borderColor.push(colors[index] || "#607274");
+      backgroundColor.push(colors[index] || additionalColor);
+      borderColor.push(colors[index] || additionalColor);
       index++;
     }
     return [{ data, backgroundColor, borderColor }];
@@ -60,8 +60,8 @@ export function useDashboard() {
       datasets.push({
         data: rest,
         label: areaStructure ? areaStructure[index] : "",
-        backgroundColor: colors[index] || "#607274",
-        borderColor: colors[index] || "#607274",
+        backgroundColor: colors[index] || additionalColor,
+        borderColor: colors[index] || additionalColor,
       });
       index++;
     }

@@ -511,3 +511,7 @@ export const colors: string[] = [
   "#596FB7",
   "#597E52",
 ];
+
+export const additionalColor = "#607274";
+
+export const debounceTime = 750;

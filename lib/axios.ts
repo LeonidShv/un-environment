@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEventBus, useDebounceFn } from "@vueuse/core";
+import { showNotification } from "@/helpers";
 
 export const api = axios.create({
   baseURL: `${import.meta.env.VITE_BACKEND_URL},${
@@ -8,7 +8,6 @@ export const api = axios.create({
 });
 
 const errors: string[] = [];
-const { emit } = useEventBus("vue-use-event-bus");
 
 api.interceptors.response.use(
   function (response) {
@@ -21,18 +20,3 @@ api.interceptors.response.use(
     return Promise.reject(error);
   },
 );
-
-const showNotification = useDebounceFn((errors) => {
-  const uniqueErrors: string[] = Array.from(new Set(errors));
-
-  uniqueErrors.forEach((errorMessage) => {
-    emit({
-      type: "error",
-      title: "Error",
-      message: errorMessage,
-      position: "bottom-right",
-    });
-  });
-
-  errors = [];
-}, 750);
