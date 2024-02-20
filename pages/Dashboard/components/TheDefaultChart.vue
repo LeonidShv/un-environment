@@ -92,8 +92,6 @@ const modifyDefaultChartCriteria = async () => {
       countriesForDefaultChart.value.join("+"),
       params,
     );
-  } catch (e) {
-    // empty line
   } finally {
     isLoading.value = false;
   }

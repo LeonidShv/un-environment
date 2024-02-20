@@ -98,8 +98,6 @@ const modifyPieRelativeChartCriteria = async () => {
       countriesForPieRelativeChart.value.join("+"),
       params,
     );
-  } catch (e) {
-    // empty line
   } finally {
     isLoading.value = false;
   }

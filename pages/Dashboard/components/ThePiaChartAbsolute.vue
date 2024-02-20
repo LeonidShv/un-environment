@@ -116,8 +116,6 @@ const modifyPieChartCriteria = async () => {
       countriesForPieChart.value.join("+"),
       params,
     );
-  } catch (e) {
-    // empty line
   } finally {
     isLoading.value = false;
   }
