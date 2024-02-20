@@ -37,13 +37,14 @@
       />
     </VFormItem>
   </VForm>
-  <VChart
-    style="width: 33vw"
-    :data="chartPie"
-    :type="EChartType.Pie"
-    :isLoading="isLoading"
-    caption="Picture 2. Emissions from various countries, measured in tons in the chosen year."
-  />
+  <div class="pie-chart__wrapper d-flex">
+    <VChart
+      :data="chartPie"
+      :type="EChartType.Pie"
+      :isLoading="isLoading"
+      caption="Picture 2. Emissions from various countries, measured in tons in the chosen year."
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -135,3 +136,10 @@ onMounted(async () => {
   await modifyPieChartCriteria();
 });
 </script>
+
+<style lang="scss" scoped>
+.pie-chart__wrapper {
+  width: 300px;
+  height: 400px;
+}
+</style>

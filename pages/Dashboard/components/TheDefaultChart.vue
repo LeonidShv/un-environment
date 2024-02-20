@@ -23,7 +23,7 @@
       />
     </VFormItem>
   </VForm>
-  <div class="d-flex default-chart__chart-wrapper">
+  <div class="default-chart__wrapper d-flex">
     <VChart
       class="chart"
       :data="chartDefault"
@@ -113,10 +113,16 @@ onBeforeMount(async () => {
 </script>
 
 <style lang="scss" scoped>
-.default-chart__chart-wrapper {
-  min-height: 400px;
-  max-height: 400px;
-  width: 860px;
-  height: 400px;
+.default-chart {
+  flex: 3;
+
+  &__wrapper {
+    width: 800px;
+    height: 440px;
+  }
+}
+
+.radio-buttons {
+  flex: 1;
 }
 </style>

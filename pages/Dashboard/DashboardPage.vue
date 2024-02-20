@@ -25,16 +25,9 @@ import ThePiaChartAbsolute from "@/pages/Dashboard/components/ThePiaChartAbsolut
 import ThePiaChartRelative from "@/pages/Dashboard/components/ThePiaChartRelative.vue";
 </script>
 
-<style lang="scss">
-.chart {
-  flex: 3;
-}
-
-.radio-buttons {
-  flex: 1;
-}
-
-.chart--pie {
-  width: 30%;
+<style lang="scss" scoped>
+h3 {
+  font-size: 24px;
+  margin-bottom: 8px;
 }
 </style>

@@ -23,23 +23,23 @@
       />
     </VFormItem>
   </VForm>
-  <div class="d-flex gap-2">
+  <div class="d-flex gap-2 pie-chart__wrapper">
     <VChart
-      class="chart--pie"
+      class="pie-chart"
       :data="chartPieRelative"
       :type="EChartType.Pie"
       :isLoading="isLoading"
       caption="Picture 3. Emissions from various countries, measured in tons in the 2020."
     />
     <VChart
-      class="chart--pie"
+      class="pie-chart"
       :data="chartPiePerPerson"
       :type="EChartType.Pie"
       :isLoading="isLoading"
       caption="Picture 4.Emissions from various countries, measured in tons per person in the 2020."
     />
     <VChart
-      class="chart--pie"
+      class="pie-chart"
       :data="chartPiePerArea"
       :type="EChartType.Pie"
       :isLoading="isLoading"
@@ -146,3 +146,13 @@ onMounted(async () => {
   await modifyPieRelativeChartCriteria();
 });
 </script>
+
+<style lang="scss" scoped>
+.pie-chart {
+  width: 30%;
+
+  &__wrapper {
+    height: 400px;
+  }
+}
+</style>
