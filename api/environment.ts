@@ -7,6 +7,11 @@ export default {
     element: string,
     country: string,
     params: IParamsEnvironment,
-  ): Promise<AxiosResponse<any>> =>
-    api.get(`/.${element}.${country}./ALL/`, { params }),
+  ): Promise<AxiosResponse<any>> => {
+    try {
+      return api.get(`/.${element}.${country}./ALL/`, { params });
+    } catch (e) {
+      return {};
+    }
+  },
 };

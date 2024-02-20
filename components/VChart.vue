@@ -1,17 +1,29 @@
 <template>
-  <figure>
-    <Line v-if="type === 'Line'" :data="data" :style="myStyles" />
-    <Pie v-if="type === 'Pie'" :data="data" :style="myStyles" />
-    <Bar v-if="type === 'Bar'" :data="data" :style="myStyles" />
+  <el-container v-loading="isLoading">
+    <figure>
+      <div class="chart">
+        <component
+          :is="chartComponent"
+          v-if="data.datasets.length"
+          :data="data"
+          :style="myStyles"
+        />
+        <div v-else-if="showNoData" class="no-data">
+          <Vue3Lottie :animation-data="noData" :height="200" :width="200" />
+          <p class="no-data__text">No data</p>
+        </div>
+      </div>
 
-    <figcaption class="m-t-2">
-      {{ caption }}
-    </figcaption>
-  </figure>
+      <figcaption class="m-t-2">
+        {{ caption }}
+      </figcaption>
+    </figure>
+  </el-container>
 </template>
 
 <script setup lang="ts">
-import { onUpdated } from "vue";
+import { computed } from "vue";
+import { Vue3Lottie } from "vue3-lottie";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -26,6 +38,7 @@ import {
   Colors,
 } from "chart.js";
 import { Line, Bar, Pie } from "vue-chartjs";
+import noData from "@/assets/animations/noData.json";
 
 import type { IChartPie, IChartDefault } from "@/interfaces/chart";
 import { EChartType } from "@/interfaces/enums";
@@ -44,42 +57,71 @@ ChartJS.register(
 );
 
 interface Props {
+  isLoading: boolean;
   type: EChartType;
   data: IChartPie | IChartDefault | any;
   caption: string;
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
+  isLoading: false,
   type: EChartType.Line,
   data: {},
   caption: "",
 });
 
 const myStyles = ref({
-  height: `500px`,
-  width: "75vw",
+  width: "100%",
   position: "relative",
+});
+
+const chartComponent = computed(() => {
+  // INFO: vue-chartjs has issue with dynamic component
+  switch (props.type) {
+    case "Line":
+      return Line;
+    case "Bar":
+      return Bar;
+    default:
+      return Pie;
+  }
+});
+
+const showNoData = computed(() => {
+  return !props.isLoading && !props.data.datasets.length;
 });
 </script>
 
 <style lang="scss" scoped>
-.chart-default-wrapper {
-  height: 500px;
-
-  @include laptop-lower {
-    height: 300px;
-  }
-}
-
-.chart-pie-wrapper {
-  height: 400px;
-
-  @include laptop-lower {
-    height: 300px;
-  }
-}
-
 figcaption {
+  display: block;
   color: var(--dark);
+}
+
+figure {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.chart {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-data {
+  width: 300px;
+  height: 230px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+.no-data__text {
+  text-align: center;
 }
 </style>

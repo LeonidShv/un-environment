@@ -11,6 +11,7 @@
         :options="elements"
         placeholder="Elements"
         filterable
+        :isLoading="isLoading"
         @change="modifyPieChartCriteria"
       />
     </VFormItem>
@@ -22,6 +23,7 @@
         filterable
         placeholder="Countries"
         multiple
+        :isLoading="isLoading"
         @change="modifyPieChartCriteria"
       />
     </VFormItem>
@@ -35,12 +37,14 @@
       />
     </VFormItem>
   </VForm>
-  <VChart
-    style="width: 33vw"
-    :data="chartPie"
-    :type="EChartType.Pie"
-    caption="Picture 2. Emissions from various countries, measured in tons in the chosen year."
-  />
+  <div class="pie-chart__wrapper d-flex">
+    <VChart
+      :data="chartPie"
+      :type="EChartType.Pie"
+      :isLoading="isLoading"
+      caption="Picture 2. Emissions from various countries, measured in tons in the chosen year."
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -93,6 +97,8 @@ function checkYear(_rule: any, value: any, callback: any) {
   }
 }
 
+const isLoading = ref(true);
+
 const modifyPieChartCriteria = async () => {
   const year = new Date(ruleForm.yearForPieChart).getFullYear();
 
@@ -103,11 +109,16 @@ const modifyPieChartCriteria = async () => {
     dimensionAtObservation: "TIME_PERIOD",
   };
 
-  await readEnvironmentPieChart(
-    elementForPieChart.value,
-    countriesForPieChart.value.join("+"),
-    params,
-  );
+  try {
+    isLoading.value = true;
+    await readEnvironmentPieChart(
+      elementForPieChart.value,
+      countriesForPieChart.value.join("+"),
+      params,
+    );
+  } finally {
+    isLoading.value = false;
+  }
 
   const datasets = getPieChartData(dataSetsSeriesForPieChart.value);
 
@@ -123,3 +134,10 @@ onMounted(async () => {
   await modifyPieChartCriteria();
 });
 </script>
+
+<style lang="scss" scoped>
+.pie-chart__wrapper {
+  width: 300px;
+  height: 400px;
+}
+</style>
