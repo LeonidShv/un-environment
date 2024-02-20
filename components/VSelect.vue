@@ -51,7 +51,7 @@ const onChange = useDebounceFn((value: string[] | string) => {
   min-width: 160px;
 
   :deep(.el-loading-mask) {
-    background: #fff;
+    background: var(--bg-app);
     bottom: unset;
     left: unset;
     width: 24px;
