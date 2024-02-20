@@ -11,6 +11,7 @@
         :options="elements"
         placeholder="Elements"
         filterable
+        :isLoading="isLoading"
         @change="modifyPieChartCriteria"
       />
     </VFormItem>
@@ -22,6 +23,7 @@
         filterable
         placeholder="Countries"
         multiple
+        :isLoading="isLoading"
         @change="modifyPieChartCriteria"
       />
     </VFormItem>
@@ -39,6 +41,7 @@
     style="width: 33vw"
     :data="chartPie"
     :type="EChartType.Pie"
+    :isLoading="isLoading"
     caption="Picture 2. Emissions from various countries, measured in tons in the chosen year."
   />
 </template>
@@ -93,6 +96,8 @@ function checkYear(_rule: any, value: any, callback: any) {
   }
 }
 
+const isLoading = ref(false);
+
 const modifyPieChartCriteria = async () => {
   const year = new Date(ruleForm.yearForPieChart).getFullYear();
 
@@ -103,11 +108,18 @@ const modifyPieChartCriteria = async () => {
     dimensionAtObservation: "TIME_PERIOD",
   };
 
-  await readEnvironmentPieChart(
-    elementForPieChart.value,
-    countriesForPieChart.value.join("+"),
-    params,
-  );
+  try {
+    isLoading.value = true;
+    await readEnvironmentPieChart(
+      elementForPieChart.value,
+      countriesForPieChart.value.join("+"),
+      params,
+    );
+  } catch (e) {
+    // empty line
+  } finally {
+    isLoading.value = false;
+  }
 
   const datasets = getPieChartData(dataSetsSeriesForPieChart.value);
 
