@@ -96,7 +96,7 @@ function checkYear(_rule: any, value: any, callback: any) {
   }
 }
 
-const isLoading = ref(false);
+const isLoading = ref(true);
 
 const modifyPieChartCriteria = async () => {
   const year = new Date(ruleForm.yearForPieChart).getFullYear();

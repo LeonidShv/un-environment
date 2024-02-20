@@ -75,7 +75,7 @@ const chartTypes = [
   },
 ];
 
-const isLoading = ref(false);
+const isLoading = ref(true);
 
 const modifyDefaultChartCriteria = async () => {
   const params: IParamsEnvironment = {

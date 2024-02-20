@@ -80,7 +80,7 @@ const chartPiePerArea = ref<IChartPie>({
   datasets: [],
 });
 
-const isLoading = ref(false);
+const isLoading = ref(true);
 
 // TODO: modifyPieRelativeChartCriteria divide on less functions
 const modifyPieRelativeChartCriteria = async () => {
