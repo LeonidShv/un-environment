@@ -6,6 +6,7 @@
         :options="elements"
         placeholder="Elements"
         filterable
+        :isLoading="isLoading"
         @change="modifyDefaultChartCriteria"
       />
     </VFormItem>
@@ -17,18 +18,21 @@
         filterable
         placeholder="Countries"
         multiple
+        :isLoading="isLoading"
         @change="modifyDefaultChartCriteria"
       />
     </VFormItem>
   </VForm>
-  <div class="d-flex">
+  <div class="default-chart__wrapper d-flex">
     <VChart
       class="chart"
       :data="chartDefault"
       :type="chartType"
+      :isLoading="isLoading"
       caption="Picture 1. Emissions from various countries, measured in tons, over different years."
     />
     <VRadioButtons
+      v-if="chartDefault.datasets.length"
       v-model="chartType"
       class="radio-buttons"
       :options="chartTypes"
@@ -71,6 +75,8 @@ const chartTypes = [
   },
 ];
 
+const isLoading = ref(true);
+
 const modifyDefaultChartCriteria = async () => {
   const params: IParamsEnvironment = {
     detail: "full",
@@ -79,12 +85,16 @@ const modifyDefaultChartCriteria = async () => {
     dimensionAtObservation: "TIME_PERIOD",
   };
 
-  await readEnvironmentDefaultChart(
-    elementForDefaultChart.value,
-    countriesForDefaultChart.value.join("+"),
-    params,
-  );
-
+  try {
+    isLoading.value = true;
+    await readEnvironmentDefaultChart(
+      elementForDefaultChart.value,
+      countriesForDefaultChart.value.join("+"),
+      params,
+    );
+  } finally {
+    isLoading.value = false;
+  }
   const datasets = getDefaultChartData(
     dataSetsSeriesForDefaultChart.value,
     structureSeriesForDefaultChart.value,
@@ -95,7 +105,22 @@ const modifyDefaultChartCriteria = async () => {
   };
 };
 
-onMounted(async () => {
+onBeforeMount(async () => {
   await modifyDefaultChartCriteria();
 });
 </script>
+
+<style lang="scss" scoped>
+.default-chart {
+  flex: 3;
+
+  &__wrapper {
+    width: 800px;
+    height: 440px;
+  }
+}
+
+.radio-buttons {
+  flex: 1;
+}
+</style>

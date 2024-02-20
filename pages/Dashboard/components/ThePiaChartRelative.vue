@@ -6,6 +6,7 @@
         :options="elements"
         placeholder="Elements"
         filterable
+        :isLoading="isLoading"
         @change="modifyPieRelativeChartCriteria"
       />
     </VFormItem>
@@ -17,27 +18,31 @@
         filterable
         placeholder="Countries"
         multiple
+        :isLoading="isLoading"
         @change="modifyPieRelativeChartCriteria"
       />
     </VFormItem>
   </VForm>
-  <div class="d-flex gap-2">
+  <div class="d-flex gap-2 pie-chart__wrapper">
     <VChart
-      class="chart--pie"
+      class="pie-chart"
       :data="chartPieRelative"
       :type="EChartType.Pie"
+      :isLoading="isLoading"
       caption="Picture 3. Emissions from various countries, measured in tons in the 2020."
     />
     <VChart
-      class="chart--pie"
+      class="pie-chart"
       :data="chartPiePerPerson"
       :type="EChartType.Pie"
+      :isLoading="isLoading"
       caption="Picture 4.Emissions from various countries, measured in tons per person in the 2020."
     />
     <VChart
-      class="chart--pie"
+      class="pie-chart"
       :data="chartPiePerArea"
       :type="EChartType.Pie"
+      :isLoading="isLoading"
       caption="Picture 5. Emissions from various countries, measured in tons per square kilometer in the year 2020."
     />
   </div>
@@ -75,6 +80,8 @@ const chartPiePerArea = ref<IChartPie>({
   datasets: [],
 });
 
+const isLoading = ref(true);
+
 // TODO: modifyPieRelativeChartCriteria divide on less functions
 const modifyPieRelativeChartCriteria = async () => {
   const params: IParamsEnvironment = {
@@ -84,11 +91,16 @@ const modifyPieRelativeChartCriteria = async () => {
     dimensionAtObservation: "TIME_PERIOD",
   };
 
-  await readEnvironmentPieRelativeChart(
-    elementForPieRelativeChart.value,
-    countriesForPieRelativeChart.value.join("+"),
-    params,
-  );
+  try {
+    isLoading.value = true;
+    await readEnvironmentPieRelativeChart(
+      elementForPieRelativeChart.value,
+      countriesForPieRelativeChart.value.join("+"),
+      params,
+    );
+  } finally {
+    isLoading.value = false;
+  }
 
   const datasets = getPieChartData(dataSetsSeriesForPieRelativeChart.value);
 
@@ -132,3 +144,13 @@ onMounted(async () => {
   await modifyPieRelativeChartCriteria();
 });
 </script>
+
+<style lang="scss" scoped>
+.pie-chart {
+  width: 30%;
+
+  &__wrapper {
+    height: 400px;
+  }
+}
+</style>

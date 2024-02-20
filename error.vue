@@ -1,9 +1,8 @@
 <template>
   <section class="error">
     <div class="m-auto">
-      <Vue3Lottie :animation-data="notFoundPage" :height="200" :width="200" />
-
       <template v-if="error.statusCode === 404">
+        <Vue3Lottie :animation-data="notFoundPage" :height="200" :width="200" />
         <h1>404!</h1>
         <p class="Error-text">
           Not found page, please go back to the home page.
