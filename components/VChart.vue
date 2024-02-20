@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
+import { onUpdated } from "vue";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -49,7 +49,7 @@ interface Props {
   caption: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   type: EChartType.Line,
   data: {},
   caption: "",

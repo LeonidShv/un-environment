@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
 import type { Ref } from "vue";
-import api from "@/pages/Dashboard/api";
+import api from "@/api";
 
 import type {
   IParamsEnvironment,

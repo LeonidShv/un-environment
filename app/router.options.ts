@@ -10,5 +10,11 @@ export default <RouterConfig>{
           (r) => r.default || r,
         ),
     },
+    {
+      name: "map",
+      path: "/map-pollution",
+      component: () =>
+        import("@/pages/Map/MapPage.vue").then((r) => r.default || r),
+    },
   ],
 };
