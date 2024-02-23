@@ -2,11 +2,11 @@
   <el-container v-loading="isLoading">
     <figure>
       <div class="chart">
-        <component
-          :is="chartComponent"
-          v-if="data.datasets.length"
-          :data="data"
-          :style="myStyles"
+        <GChart
+          v-if="chartData.length"
+          :type="type"
+          :settings="settings"
+          :data="chartData"
         />
         <div v-else-if="showNoData" class="no-data">
           <Vue3Lottie :animation-data="noData" :height="200" :width="200" />
@@ -22,77 +22,33 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onUpdated } from "vue";
+import { computed } from "vue";
 import { Vue3Lottie } from "vue3-lottie";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  LineElement,
-  ArcElement,
-  PointElement,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-  Colors,
-} from "chart.js";
-import { Line, Bar, Pie } from "vue-chartjs";
+import { GChart } from "vue-google-charts";
+
 import noData from "@/assets/animations/noData.json";
 
 import type { IChartPie, IChartDefault } from "@/interfaces/chart";
-import { EChartType } from "@/interfaces/enums";
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  ArcElement,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-  Colors,
-);
+import { EChartTypeG } from "@/interfaces/enums";
 
 interface Props {
   isLoading: boolean;
-  type: EChartType;
-  data: IChartPie | IChartDefault | any;
+  type: EChartTypeG;
+  chartData: IChartPie | IChartDefault | any;
   caption: string;
+  settings: any;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   isLoading: false,
-  type: EChartType.Line,
-  data: {},
+  type: EChartTypeG.LineChart,
+  chartData: {},
   caption: "",
-});
-
-onUpdated(() => {
-  console.log(props.type, props.data);
-});
-
-const myStyles = ref({
-  width: "100%",
-  position: "relative",
-});
-
-const chartComponent = computed(() => {
-  // INFO: vue-chartjs has issue with dynamic component
-  switch (props.type) {
-    case "Line":
-      return Line;
-    case "Bar":
-      return Bar;
-    default:
-      return Pie;
-  }
+  settings: null,
 });
 
 const showNoData = computed(() => {
-  return !props.isLoading && !props.data.datasets.length;
+  return !props.isLoading && !props.chartData.length;
 });
 </script>
 

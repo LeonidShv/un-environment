@@ -4,6 +4,13 @@ export enum EChartType {
   Bar = "Bar",
 }
 
+export enum EChartTypeG {
+  GeoChart = "GeoChart",
+  LineChart = "LineChart",
+  PieChart = "PieChart",
+  ColumnChart = "ColumnChart",
+}
+
 export enum EDatePickerType {
   year = "year",
   date = "date",

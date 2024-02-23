@@ -43,6 +43,26 @@ export function useDashboard() {
     return [{ data, backgroundColor, borderColor }];
   }
 
+  function getMapChartData(
+    dataSetsSeries: IDataSetsSeries,
+    structureSeries: IStructureSeries[],
+  ) {
+    const areaStructure = getAreaStructure(structureSeries);
+
+    const data = [["Country", "Element ton"]];
+    let index = 0;
+
+    for (const key in dataSetsSeries) {
+      const rest = Object.entries(dataSetsSeries[key].observations)
+        .sort((a, b) => Number(a[0]) - Number(b[0]))
+        .map((item) => Math.round(item[1][0] * tonsPerGGCoefficient));
+
+      data.push([areaStructure[index], rest[0]]);
+      index++;
+    }
+    return data;
+  }
+
   function getDefaultChartData(
     dataSetsSeries: IDataSetsSeries,
     structureSeries: IStructureSeries[],
@@ -72,5 +92,6 @@ export function useDashboard() {
     getAreaStructure,
     getPieChartData,
     getDefaultChartData,
+    getMapChartData,
   };
 }
