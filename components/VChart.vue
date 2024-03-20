@@ -70,10 +70,6 @@ const props = withDefaults(defineProps<Props>(), {
   caption: "",
 });
 
-onUpdated(() => {
-  console.log(props.type, props.data);
-});
-
 const myStyles = ref({
   width: "100%",
   position: "relative",

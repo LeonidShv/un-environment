@@ -38,10 +38,6 @@
     </VFormItem>
   </VForm>
   <div class="pie-chart__wrapper d-flex">
-    <p>map</p>
-    <TheChartGeo :data="chartPie" />
-    <br />
-    <br />
     <VChart
       :data="chartPie"
       :type="EChartType.Pie"
@@ -63,7 +59,6 @@ import {
   EDatePickerSize,
 } from "@/interfaces/enums";
 import { useEnvironmentStore } from "@/pages/Dashboard/store/environment";
-import TheChartGeo from "@/pages/Map/components/TheChartGeo";
 const { getAreaStructure, getPieChartData } = useDashboard();
 
 const store = useEnvironmentStore();

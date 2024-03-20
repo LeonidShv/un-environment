@@ -19,19 +19,20 @@
         placeholder="Countries"
         multiple
         :isLoading="isLoading"
+
         @change="modifyPieRelativeChartCriteria"
       />
     </VFormItem>
   </VForm>
   <div class="d-flex gap-2 pie-chart__wrapper">
-    <TheChartGeo />
-    <!-- <VChartG
+    <VChartG
       :type="EChartTypeG.GeoChart"
       :settings="{
         packages: ['geochart'],
       }"
       :chartData="chartData"
-    /> -->
+  
+    />
     <!-- mapsApiKey: 'AIzaSyDKRFMEVEnD2kXnKAWhPFPA-DwgFusA6mM' -->
     <!-- <VChart
       class="pie-chart"
@@ -61,7 +62,6 @@
 import { ref, onMounted } from "vue";
 import { EChartTypeG } from "@/interfaces/enums";
 import VChartG from "@/components/VChartG.vue";
-import TheChartGeo from "@/pages/Map/components/TheChartGeo.vue";
 
 // TODO: IParamsEnvironment -> IParamsEnvironmentRead
 import type { IParamsEnvironment } from "@/pages/Dashboard/interfaces/environment.ts";
@@ -132,10 +132,9 @@ const modifyPieRelativeChartCriteria = async () => {
     structureSeriesForPieRelativeChart.value,
   );
   chartData.value = datasets;
-  console.log("datasets", datasets);
 
   const datasetsPerPerson = JSON.parse(JSON.stringify(datasets));
-  const datasetsPerArea = JSON.parse(JSON.stringify(datasets));
+  const datasetsPerArea=JSON.parse(JSON.stringify(datasets));
   const areaStructure = getAreaStructure(
     structureSeriesForPieRelativeChart.value,
   );
