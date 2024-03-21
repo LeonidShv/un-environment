@@ -31,7 +31,6 @@
         packages: ['geochart'],
       }"
       :chartData="chartData"
-  
     />
     <!-- <VChart
       class="pie-chart"
