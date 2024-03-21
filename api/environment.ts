@@ -9,7 +9,7 @@ export default {
     params: IParamsEnvironment,
   ): Promise<AxiosResponse<any>> => {
     try {
-      return api.get(`/.${element}.${country}./ALL/`, { params });
+      return api.get(`asdasd/.${element}.${country}./ALL/`, { params });
     } catch (e) {
       return {};
     }

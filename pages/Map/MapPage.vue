@@ -1,33 +1,18 @@
 <template>
   <section>
-    <GChart
-      type="GeoChart"
-      :settings="{
-        packages: ['geochart'],
-      }"
-      :data="chartData"
-      :options="chartOptions"
-    />
+    <h2 class="m-b-1">Different countries | one element</h2>
+    <h3>Absolute values</h3>
+    <TheMapChart />
   </section>
 </template>
 
-<script setup>
-import { GChart } from "vue-google-charts";
-
-const chartData = ref([
-  ["Country", "Popularity"],
-  ["Germany", 2000],
-  ["United States", 3000],
-  ["Brazil", 4000],
-  ["Canada", 5000],
-  ["France", 600],
-  ["RU", 0],
-]);
-
-const chartOptions = ref({
-  chart: {
-    title: "Company Performance",
-    subtitle: "Sales, Expenses, and Profit: 2014-2017",
-  },
-});
+<script setup lang="ts">
+import TheMapChart from "@/pages/Map/components/TheMapChart.vue";
 </script>
+
+<style lang="scss" scoped>
+h3 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+</style>
