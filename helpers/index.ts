@@ -1,5 +1,6 @@
 import { useEventBus, useDebounceFn } from "@vueuse/core";
 import { debounceTime } from "@/constants";
+import type { IStructureSeries } from "@/interfaces/common.ts";
 
 const { emit } = useEventBus("vue-use-event-bus");
 
@@ -17,3 +18,22 @@ export const showNotification = useDebounceFn((errors) => {
 
   errors = [];
 }, debounceTime);
+
+export function getAreaStructure(
+  structureSeriesForPieChart: IStructureSeries[],
+) {
+  if (!structureSeriesForPieChart) {
+    return undefined;
+  }
+
+  const refAreaItem = structureSeriesForPieChart.find(
+    ({ role }) => role === "REF_AREA",
+  );
+
+  if (!refAreaItem || !refAreaItem.values) {
+    return undefined;
+  }
+
+  const areaStructure = refAreaItem.values.map(({ name }) => name);
+  return areaStructure;
+}

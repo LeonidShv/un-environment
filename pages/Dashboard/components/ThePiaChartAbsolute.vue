@@ -59,8 +59,9 @@ import {
   EDatePickerSize,
 } from "@/interfaces/enums";
 import { useEnvironmentStore } from "@/pages/Dashboard/store/environment";
+import { getAreaStructure } from "@/helpers/index";
 
-const { getAreaStructure, getPieChartData } = useDashboard();
+const { getPieChartData } = useDashboard();
 
 const store = useEnvironmentStore();
 const { dataSetsSeriesForPieChart, structureSeriesForPieChart } =

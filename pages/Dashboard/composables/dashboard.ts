@@ -1,29 +1,9 @@
-import { colors, additionalColor } from "@/constants";
-import type {
-  IStructureSeries,
-  IDataSetsSeries,
-} from "@/pages/Dashboard/interfaces/environment.ts";
-
-const tonsPerGGCoefficient = 1000;
+import { colors, additionalColor, tonsPerGGCoefficient } from "@/constants";
+import { getAreaStructure } from "@/helpers/index";
+import type { IDataSetsSeries } from "@/pages/Dashboard/interfaces/environment";
+import type { IStructureSeries } from "@/interfaces/common";
 
 export function useDashboard() {
-  function getAreaStructure(structureSeriesForPieChart: IStructureSeries[]) {
-    if (!structureSeriesForPieChart || !structureSeriesForPieChart) {
-      return undefined;
-    }
-
-    const refAreaItem = structureSeriesForPieChart.find(
-      ({ role }) => role === "REF_AREA",
-    );
-
-    if (!refAreaItem || !refAreaItem.values) {
-      return undefined;
-    }
-
-    const areaStructure = refAreaItem.values.map(({ name }) => name);
-    return areaStructure;
-  }
-
   function getPieChartData(dataSetsSeries: IDataSetsSeries) {
     const data = [];
     const backgroundColor = [];
@@ -69,7 +49,6 @@ export function useDashboard() {
   }
 
   return {
-    getAreaStructure,
     getPieChartData,
     getDefaultChartData,
   };
