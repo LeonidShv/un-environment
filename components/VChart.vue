@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onUpdated } from "vue";
+import { computed } from "vue";
 import { Vue3Lottie } from "vue3-lottie";
 import {
   Chart as ChartJS,
@@ -68,10 +68,6 @@ const props = withDefaults(defineProps<Props>(), {
   type: EChartType.Line,
   data: {},
   caption: "",
-});
-
-onUpdated(() => {
-  console.log(props.type, props.data);
 });
 
 const myStyles = ref({

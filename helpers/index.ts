@@ -25,7 +25,6 @@ export function getAreaStructure(
   if (!structureSeriesForPieChart) {
     return undefined;
   }
-console.log('structureSeriesForPieChart', structureSeriesForPieChart);
 
   const refAreaItem = structureSeriesForPieChart.find(
     ({ role }) => role === "REF_AREA",
