@@ -515,3 +515,5 @@ export const colors: string[] = [
 export const additionalColor = "#607274";
 
 export const debounceTime = 750;
+
+export const tonsPerGGCoefficient = 1000;

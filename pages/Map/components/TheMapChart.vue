@@ -24,36 +24,14 @@
     </VFormItem>
   </VForm>
   <div class="d-flex gap-2 pie-chart__wrapper">
-    <TheChartGeo />
-    <!-- <VChartG
+    <VChartG
       :type="EChartTypeG.GeoChart"
       :settings="{
         packages: ['geochart'],
       }"
       :chartData="chartData"
-    /> -->
-    <!-- mapsApiKey: 'AIzaSyDKRFMEVEnD2kXnKAWhPFPA-DwgFusA6mM' -->
-    <!-- <VChart
-      class="pie-chart"
-      :data="chartPieRelative"
-      :type="EChartType.Pie"
-      :isLoading="isLoading"
-      caption="Picture 3. Emissions from various countries, measured in tons in the 2020."
     />
-    <VChart
-      class="pie-chart"
-      :data="chartPiePerPerson"
-      :type="EChartType.Pie"
-      :isLoading="isLoading"
-      caption="Picture 4.Emissions from various countries, measured in tons per person in the 2020."
-    />
-    <VChart
-      class="pie-chart"
-      :data="chartPiePerArea"
-      :type="EChartType.Pie"
-      :isLoading="isLoading"
-      caption="Picture 5. Emissions from various countries, measured in tons per square kilometer in the year 2020."
-    /> -->
+    <!-- mapsApiKey: 'secret key' -->
   </div>
 </template>
 
@@ -61,17 +39,14 @@
 import { ref, onMounted } from "vue";
 import { EChartTypeG } from "@/interfaces/enums";
 import VChartG from "@/components/VChartG.vue";
-import TheChartGeo from "@/pages/Map/components/TheChartGeo.vue";
-
-// TODO: IParamsEnvironment -> IParamsEnvironmentRead
-import type { IParamsEnvironment } from "@/pages/Dashboard/interfaces/environment.ts";
 import { countries, elements } from "@/constants";
+import { getAreaStructure } from "@/helpers/index";
+import { useMap } from "@/pages/Map/composables/map";
+import { useMapStore } from "@/pages/Map/store/map";
 
-import { useDashboard } from "@/pages/Dashboard/composables/dashboard";
+import type { IParamsEnvironmentMap } from "@/pages/Map/interfaces/map";
 
-import { useEnvironmentMapStore } from "@/pages/Map/store/environmentMap";
-
-const { getAreaStructure, getMapChartData } = useDashboard();
+const { getMapChartData } = useMap();
 
 const chartData = ref([
   ["Country", "Element ton"],
@@ -83,11 +58,10 @@ const chartData = ref([
   ["RU", 0],
 ]);
 
-const store = useEnvironmentMapStore();
-const {
-  dataSetsSeriesForPieRelativeChart,
-  structureSeriesForPieRelativeChart,
-} = storeToRefs(store);
+const store = useMapStore();
+const { structureSeriesForMapChart, dataSetsSeriesForMapChart } =
+  storeToRefs(store);
+
 const { readEnvironmentPieRelativeChart } = store;
 
 const elementForPieRelativeChart = ref("EN_ATM_CO2E_XLULUCF");
@@ -109,7 +83,7 @@ const isLoading = ref(true);
 
 // TODO: modifyPieRelativeChartCriteria divide on less functions
 const modifyPieRelativeChartCriteria = async () => {
-  const params: IParamsEnvironment = {
+  const params: IParamsEnvironmentMap = {
     detail: "full",
     startPeriod: "2020-01-01",
     endPeriod: "2020-12-31",
@@ -128,16 +102,15 @@ const modifyPieRelativeChartCriteria = async () => {
   }
 
   const datasets = getMapChartData(
-    dataSetsSeriesForPieRelativeChart.value,
-    structureSeriesForPieRelativeChart.value,
+    structureSeriesForMapChart.value,
+    dataSetsSeriesForMapChart.value,
   );
   chartData.value = datasets;
-  console.log("datasets", datasets);
 
   const datasetsPerPerson = JSON.parse(JSON.stringify(datasets));
   const datasetsPerArea = JSON.parse(JSON.stringify(datasets));
   const areaStructure = getAreaStructure(
-    structureSeriesForPieRelativeChart.value,
+    dataSetsSeriesForMapChart.value,
   );
   const filteredCountries = countries.filter(({ label }) =>
     areaStructure?.includes(label),
@@ -184,3 +157,4 @@ onMounted(async () => {
   }
 }
 </style>
+~/pages/Map/store/map
