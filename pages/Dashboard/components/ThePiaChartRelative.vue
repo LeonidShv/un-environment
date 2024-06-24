@@ -1,5 +1,5 @@
 <template>
-  <VForm class="d-flex gap-1 m-b-1">
+  <VForm class="d-flex wrap gap-1 m-b-1">
     <VFormItem>
       <VSelect
         v-model="elementForPieRelativeChart"
@@ -23,7 +23,7 @@
       />
     </VFormItem>
   </VForm>
-  <div class="d-flex gap-2 pie-chart__wrapper">
+  <div class="d-flex gap-2 pie-chart__wrapper wrap">
     <VChart
       class="pie-chart"
       :data="chartPieRelative"
@@ -149,9 +149,15 @@ onMounted(async () => {
 <style lang="scss" scoped>
 .pie-chart {
   width: 30%;
+  max-width: 350px;
+  min-width: 300px;
 
-  &__wrapper {
-    height: 400px;
+  // &__wrapper {
+  //   height: 400px;
+  // }
+
+  & :deep(figcaption) {
+    height: 102px;
   }
 }
 </style>
