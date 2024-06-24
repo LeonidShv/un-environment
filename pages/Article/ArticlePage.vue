@@ -10,13 +10,10 @@
     <div class="devider m-t-1 m-b-1"></div>
 
     <div class="article__info">
-      <nuxt-img
+      <img
         class="article__img m-b-2"
-        :src="article?.imgSrc"
+        :src="`/un-environment${article?.imgSrc}`"
         :alt="article?.imgAlt"
-        format="webp"
-        fit="cover"
-        loading="lazy"
       />
       <template v-for="(description, i) in article?.description" :key="i">
         <p
