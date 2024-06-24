@@ -5,6 +5,10 @@
   <main class="main p-h-3">
     <NuxtPage />
   </main>
+
+  <footer class="footer d-flex wrap">
+    <VFooter />
+  </footer>
 </template>
 
 <script setup lang="ts">
@@ -46,8 +50,15 @@ const navigation: Ref<INavigationItem[]> = ref([
 @import "./assets/styles/main.scss";
 
 .header,
-.main {
+.main,
+.footer {
   max-width: 1200px;
   margin: auto;
+}
+
+.footer {
+  justify-content: space-between;
+  padding: 2rem 3rem;
+  border-top: 1px solid var(--el-menu-border-color);
 }
 </style>

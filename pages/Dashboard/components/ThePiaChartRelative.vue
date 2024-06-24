@@ -152,9 +152,9 @@ onMounted(async () => {
   max-width: 350px;
   min-width: 300px;
 
-  &__wrapper {
-    height: 400px;
-  }
+  // &__wrapper {
+  //   height: 400px;
+  // }
 
   & :deep(figcaption) {
     height: 102px;

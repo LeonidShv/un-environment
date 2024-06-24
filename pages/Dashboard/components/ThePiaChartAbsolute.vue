@@ -139,6 +139,6 @@ onMounted(async () => {
 <style lang="scss" scoped>
 .pie-chart__wrapper {
   width: 300px;
-  height: 400px;
+  // height: 400px;
 }
 </style>
