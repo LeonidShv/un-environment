@@ -43,6 +43,11 @@ const navigation: Ref<INavigationItem[]> = ref([
     label: "Map Pollution",
     disabled: false,
   },
+  {
+    path: "/blog",
+    label: "Blog",
+    disabled: false,
+  },
 ]);
 </script>
 
@@ -54,6 +59,10 @@ const navigation: Ref<INavigationItem[]> = ref([
 .footer {
   max-width: 1200px;
   margin: auto;
+}
+
+.main {
+  min-height: calc(100vh - 95px - 60px);
 }
 
 .footer {

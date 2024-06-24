@@ -2,9 +2,9 @@
   <p class="footer__contacts d-flex gap-2">
     <a
       class="footer__link"
-      href="https://github.com/LeonidShv"
+      href="https://github.com/LeonidShv/un-environment"
       target="_blank"
-      aria-label="visit a Github of Leonid Shvab"
+      aria-label="visit a Github open source project, un-environment"
     >
       <svg
         class="footer__icon"
