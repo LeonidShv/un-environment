@@ -1,0 +1,25 @@
+{
+  "articles": [
+    {
+      "title": "Influence of air polution",
+      "id": "3410949",
+      "author": "Leonid Shvab",
+      "description": [
+        "The warming rate of our planet has significantly increased in recent years due to atmospheric emissions. Humanity knows about 8 ice ages on Earth, which were bly influenced by the Earth's orbital variations.",
+        "However, the current warming is due to human activities. This warming is about 10 times faster than the warming after the first ice age. Our emissions into the atmosphere create a greenhouse effect. Here’s how it works: sunlight passes through the atmosphere, clouds, and our emissions, heating the atmosphere. When the sunlight reflects off the Earth's surface, this energy goes back into space. Therefore, the more emissions in the atmosphere, the more heat our planet absorbs.",
+        "Such climate change has a major impact on humanity. The precipitation patterns will change, sea levels will rise, weather will become more extreme (hurricanes, extreme heat), and entire countries or large areas of densely populated countries could be at risk of flooding.",
+        "Let's investigate basic <strong>greenhouse gasses</strong>:",
+        "<ul><li><b>Methane</b> (CH4): <b>Impact</b>: Methane is a potent greenhouse gas, about 25 times more effective at trapping heat in the atmosphere than CO2 over a 100-year period. <b>Sources</b>: It is emitted during the production and transport of coal, oil, and natural gas, as well as from livestock and other agricultural practices, and by the decay of organic waste in landfills.</li><li><b>Carbon dioxide</b> (CO2): <b>Impact</b> : CO2 is the primary greenhouse gas emitted through human activities, mainly from burning fossil fuels for energy and transportation. It is the largest contributor to climate change. <b>Sources</b>: Fossil fuel combustion, deforestation, and industrial processes.</li><li><b>Greenhouse Gases</b> (GHGs): <b>Impact</b>: GHGs trap heat in the atmosphere, leading to global warming and climate change. They include CO2, CH4, N2O, HFCs, PFCs, and SF6. <b>Sources</b>: Various human activities like industrial processes, agriculture, and energy production.</li><li><b>Hydrofluorocarbons</b> (HFCs): <b>Impact</b>: HFCs are synthetic gases used in refrigeration and air conditioning. They have a high global warming potential (GWP), much higher than CO2. <b>Sources</b>: Leakage and disposal of equipment containing HFCs.</li><li><b>Nitrous oxide</b> (N2O): <b>Impact</b>: N2O is a powerful greenhouse gas with a GWP about 298 times that of CO2 over 100 years. It also contributes to the depletion of the ozone layer. <b>Sources</b>: Agricultural activities, fossil fuel combustion, and industrial processes.</li><li><b>Perfluorocarbons</b> (PFCs): <b>Impact</b>: PFCs are very potent greenhouse gases with a long atmospheric lifetime. They have a very high GWP. <b>Sources</b>: Industrial processes, primarily aluminum production and semiconductor manufacturing.</li><li><b>Sulphur hexafluoride</b> (SF6): <b>Impact</b>: SF6 is an extremely potent greenhouse gas with a GWP of 23,500 times that of CO2. It has a very long atmospheric lifetime. <b>Sources</b>: Used as an insulating gas in electrical equipment.</li></ul>",
+        "Sources:",
+        "<a href='https://science.nasa.gov/climate-change/evidence/'>NASA - climate-change evidence</a>",
+        "<a href='https://science.nasa.gov/climate-change/causes/'>NASA - climate-change causes</a>",
+        "<a href='https://science.nasa.gov/climate-change/effects/'>NASA - climate-change effects</a>",
+        "<a href='https://uk-ua.topographic-map.com/map/'>Map - elevation of the land above sea level</a>"
+      ],
+      "imgSrc": "/airPollutionAnime.webp",
+      "imgAlt": "Influence of air polution",
+      "timeRead": "5 min read",
+      "date": "2024-06-24T19:00:28.971Z"
+    }
+  ]
+}

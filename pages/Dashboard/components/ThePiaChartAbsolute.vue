@@ -1,7 +1,7 @@
 <template>
   <VForm
     refForm="ruleFormRef"
-    class="d-flex gap-1 m-b-1"
+    class="d-flex wrap gap-1 m-b-1"
     :model="ruleForm"
     :rules="rules"
   >
@@ -139,6 +139,6 @@ onMounted(async () => {
 <style lang="scss" scoped>
 .pie-chart__wrapper {
   width: 300px;
-  height: 400px;
+  // height: 400px;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <VForm class="d-flex gap-1 m-b-1">
+  <VForm class="d-flex wrap gap-1 m-b-1">
     <VFormItem>
       <VSelect
         v-model="elementForDefaultChart"
@@ -25,7 +25,6 @@
   </VForm>
   <div class="default-chart__wrapper d-flex">
     <VChart
-      class="chart"
       :data="chartDefault"
       :type="chartType"
       :isLoading="isLoading"
@@ -117,10 +116,29 @@ onBeforeMount(async () => {
   &__wrapper {
     width: 800px;
     height: 440px;
+
+    :deep(figure) {
+      overflow-x: auto;
+    }
+
+    :deep(.chart) {
+      @media (max-width: 600px) {
+        min-width: 400px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      width: 100%;
+      height: 300px;
+    }
   }
 }
 
 .radio-buttons {
   flex: 1;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
 }
 </style>

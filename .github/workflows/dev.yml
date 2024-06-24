@@ -4,7 +4,6 @@ on:
   pull_request:
     branches:
       - dev
-      - main
 
 jobs:
   build:
@@ -38,6 +37,3 @@ jobs:
 
       - name: Build app
         run: npm run build
-
-      # - name: Deploy app
-      #   TODO

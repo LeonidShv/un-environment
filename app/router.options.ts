@@ -16,5 +16,16 @@ export default <RouterConfig>{
       component: () =>
         import("@/pages/Map/MapPage.vue").then((r) => r.default || r),
     },
+    {
+      name: "blog",
+      path: "/blog",
+      component: () => import("@/pages/Blog/BlogPage.vue"),
+    },
+    {
+      name: "article",
+      path: "/blog/:id",
+      component: () =>
+        import("@/pages/Article/ArticlePage.vue").then((r) => r.default || r),
+    },
   ],
 };
