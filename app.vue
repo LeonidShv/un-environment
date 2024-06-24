@@ -1,8 +1,8 @@
 <template>
-  <header class="p-h-3">
+  <header class="header p-h-3">
     <VNavigation class="navigation" :navigation="navigation" />
   </header>
-  <main class="p-h-3">
+  <main class="main p-h-3">
     <NuxtPage />
   </main>
 </template>
@@ -31,22 +31,23 @@ on((params: IElNotification | any) => {
 const navigation: Ref<INavigationItem[]> = ref([
   {
     path: "/",
-    label: "Information",
+    label: "Charts",
     disabled: false,
   },
   {
-    path: "/",
-    label: "Cases",
+    path: "/map-pollution",
+    label: "Map Pollution",
     disabled: false,
-  },
-  {
-    path: "/",
-    label: "Conclusions",
-    disabled: true,
   },
 ]);
 </script>
 
 <style lang="scss">
 @import "./assets/styles/main.scss";
+
+.header,
+.main {
+  max-width: 1200px;
+  margin: auto;
+}
 </style>

@@ -13,19 +13,27 @@ a {
 }
 
 h1 {
-  font-size: 40px;
+  font-size: 2.5rem;
 
   @include tablet-lower {
-    font-size: 32px;
+    font-size: 1.7rem;
+  }
+
+  @include phone-lower {
+    font-size: 1.5rem;
   }
 }
 
 h2,
 h2 span {
-  font-size: 32px;
+  font-size: 2rem;
 
   @include tablet-lower {
-    font-size: 3rem;
+    font-size: 1.7rem;
+  }
+
+  @include phone-lower {
+    font-size: 1.3rem;
   }
 }
 
@@ -33,12 +41,16 @@ h3 {
   font-size: 3rem;
 
   @include tablet-lower {
+    font-size: 2.3rem;
+  }
+
+  @include phone-lower {
     font-size: 2rem;
   }
 }
 
 p {
-  font-size: 20px;
+  font-size: 1.25rem;
   line-height: 30px;
 }
 
@@ -168,6 +180,9 @@ body {
 }
 .p-b-3 {
   padding-bottom: 3rem;
+}
+.p-b-4 {
+  padding-bottom: 4rem;
 }
 
 .p-t-1 {

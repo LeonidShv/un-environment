@@ -25,6 +25,8 @@ withDefaults(defineProps<Props>(), {
 
 <style lang="scss" scoped>
 .navigation {
+  width: 100%;
+
   :deep(.el-menu-item) {
     padding: 0;
   }
