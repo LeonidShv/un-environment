@@ -59,7 +59,6 @@ useHead({
   max-width: 720px;
 
   &__title {
-    font-size: 3rem;
     font-weight: bold;
   }
 }

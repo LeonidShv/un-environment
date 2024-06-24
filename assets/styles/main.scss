@@ -218,4 +218,8 @@ body {
 
 .p-h-3 {
   padding: 0 3rem;
+
+  @include phone-lower {
+    padding: 0 1.2rem;
+  }
 }
