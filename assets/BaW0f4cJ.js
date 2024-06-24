@@ -1,0 +1,1 @@
+import{g as m,t as p}from"./B_U7x_0N.js";import"./DP2Zw0Rp.js";function g(){function o(r,u){const a=m(u),e=[["Country","Element ton"]];let n=0;for(const s in r){const c=Object.entries(r[s].observations).sort((t,i)=>Number(t[0])-Number(i[0])).map(t=>Math.round(t[1][0]*p));e.push([a[n],c[0]]),n++}return e}return{getMapChartData:o}}export{g as useMap};
