@@ -22,7 +22,7 @@ jobs:
           cache: "npm"
 
       - name: Install dependency
-        run: npm install
+        run: npm ci
 
       - name: Setup .env
         run: |
@@ -36,4 +36,7 @@ jobs:
         run: npm run lint
 
       - name: Build app
-        run: npm run build
+        run: npm run generate
+
+      - name: Deploy app
+        run: npm run deploy
