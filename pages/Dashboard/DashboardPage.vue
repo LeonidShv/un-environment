@@ -21,6 +21,14 @@
 import TheDefaultChart from "@/pages/Dashboard/components/TheDefaultChart.vue";
 import ThePiaChartAbsolute from "@/pages/Dashboard/components/ThePiaChartAbsolute.vue";
 import ThePiaChartRelative from "@/pages/Dashboard/components/ThePiaChartRelative.vue";
+
+useHead({
+  title: "un-environmen",
+  meta: [
+    { name: "description", content: "emissions into the atmosphere in different countries. emissions into the atmosphere in different years. pollution of the graphics atmosphere. warming - UN" },
+  ],
+  htmlAttrs: { lang: "en" },
+});
 </script>
 
 <style lang="scss" scoped>

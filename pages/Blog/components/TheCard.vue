@@ -2,7 +2,7 @@
   <div class="blog__list">
     <NuxtLink :to="`/blog/${id}`" class="bload__list-card card">
       <p class="card__author">{{ author }}</p>
-      <section class="card__info-wrapper d-flex gap-2">
+      <section class="card__info-wrapper wrap d-flex gap-2">
         <div>
           <h3 class="card__title">
             {{ title }}
