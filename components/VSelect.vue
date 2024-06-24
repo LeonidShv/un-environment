@@ -41,6 +41,8 @@ withDefaults(defineProps<Props>(), {
 const emit = defineEmits(["update:v-model", "change"]);
 
 const onChange = useDebounceFn((value: string[] | string) => {
+  if (!value.length) return;
+
   emit("change", value);
 }, 750);
 </script>

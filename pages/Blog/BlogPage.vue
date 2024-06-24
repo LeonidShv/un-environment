@@ -1,6 +1,6 @@
 <template>
   <section class="blog p-t-2 p-b-4">
-    <h2 class="m-t-2 m-b-1">Climate actions</h2>
+    <h2 class="p-l-1 m-b-1">Climate actions</h2>
 
     <div class="blog__list">
       <TheCard
