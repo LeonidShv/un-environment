@@ -15,6 +15,7 @@
           date,
         } in articles.articles"
         :id="id"
+        :key="id"
         :author="author"
         :title="title"
         :description="description"

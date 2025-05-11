@@ -35,7 +35,7 @@ withDefaults(defineProps<IBlog>(), {
   id: "",
   author: "",
   title: "",
-  description: [],
+  description: () => [""],
   imgSrc: "",
   imgAlt: "",
   timeRead: "",
